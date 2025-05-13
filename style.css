@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+}
+
+.tela {
+    width: 70%;
+}
+
+.footer {
+    background-color: blue;
+    width: 100%;
+    height: 25dvh;
+}
+
+.botoes {
+    display: flex;
+    justify-content: space-around;
+    background-color: aqua;
+    width: 15%;
+    height: 100dvh;
+    align-items: center;
+    flex-direction: column;
+}
+
+.tudo {
+    display: flex;
+}
+
+.header {
+    background-color: aliceblue;
+    width: 100%;
+    height: 15dvh;
+}
+
+.imagemeinterativo {
+    background-color: bisque;
+    width: 100%;
+    height: 60dvh;
+}
+
+.botao4{
+    height: 10%;
+    width: 50%;
+    
+}
