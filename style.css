@@ -20,6 +20,16 @@ body {
     background-color: aliceblue;
     width: 100%;
     height: 14dvh;
+    display: flex;
+    align-items: center;
+}
+
+.logo_header{
+    width: 50%;
+}
+
+.logo_header img{
+    width: 50%;
 }
 
 .imagemeinterativo {
