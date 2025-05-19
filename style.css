@@ -1,17 +1,40 @@
-<<<<<<< HEAD
+/* Colocamos o body sem margem */
+
 body {
     margin: 0;
 }
+
+/* Responsavel pela maioria das divs */
 
 .tela {
     width: 70%;
 }
 
+.tudo {
+    display: flex;
+}
+
+/* Configuração de tamanhos das divs principais e seus layout */
+
+.header {
+    background-color: aliceblue;
+    width: 100%;
+    height: 14dvh;
+}
+
+.imagemeinterativo {
+    background-color: bisque;
+    width: 100%;
+    height: 49dvh;
+}
+
 .footer {
     background-color: blue;
     width: 100%;
-    height: 25dvh;
+    height: 35dvh;
 }
+
+/* Configuração dos botões e seus layouts */
 
 .botoes {
     display: flex;
@@ -23,38 +46,35 @@ body {
     flex-direction: column;
 }
 
-.tudo {
-    display: flex;
-}
-
-.header {
-    background-color: aliceblue;
-    width: 100%;
-    height: 15dvh;
-}
-
-.imagemeinterativo {
-    background-color: bisque;
-    width: 100%;
-    height: 60dvh;
-}
-
-.botao4{
+.botao{
     height: 10%;
-    width: 50%;
-    
-=======
-.topo{
-    text-align: center;
-    top: 0;
-    width: 70%;
-    height: 15vh;
-    background-color: aqua;
+    width: 38%;
 }
-.botoes{
-    background-color: aqua;
-    width: 15%;
-    height: 70vh;
-    text-align: left;
->>>>>>> 6d91f1198d63b21537579153409a23040a3afb46
+
+/* Botão da tela */
+
+.botao_tela{
+    border-radius: 20px;
+    background-color: #0bbb66;
+    width: 40%;
+    height: 20%;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 2%;
+    position: relative;
+    top: 12%;
+    font-size: 30px;
+}
+
+
+/* O espaçador entre header e o footer */
+
+.space{
+    background-color: #0bbb66;
+    width: 100%;
+    height: 1dvh;
+    
 }
