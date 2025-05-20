@@ -35,6 +35,14 @@ body {
     margin-left: 5%;
 }
 
+.banco24h img{
+    width: 30%;
+    margin-left: auto;
+    display: flex;
+    justify-content: right;
+    margin-right: 5%;
+}
+
 .imagemeinterativo {
     background-color: rgb(255, 255, 255);
     width: 100%;
@@ -68,8 +76,10 @@ body {
     box-shadow: 0 6px 0 #666;
     padding: 10px 20px;
     font-weight: bold;
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    transition: transform 0.1s ease, box-shadow 0.1s ease; /* Configuração da animação */
 }
+
+/* Animação do botão */
 
 .botao:hover {
     transform: translateY(1px);     /* leve afundamento */
