@@ -60,10 +60,25 @@ body {
 }
 
 .botao{
+    cursor: pointer;
     height: 12%;
     width: 45%;
-    background-color: rgb(216, 210, 210);
+    background-color: #d8d2d2;
+    border: 2px solid #aaa; /* borda cinza escura */
+    box-shadow: 0 6px 0 #666;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
+
+.botao:hover {
+    transform: translateY(1px);     /* leve afundamento */
+    box-shadow: 0 4px 0 #666;
+  }
+.botao:active {
+    transform: translateY(6px);     /* afundamento completo */
+    box-shadow: 0 0 0 #666;
+  }
 
 /* Botão da tela */
 
@@ -92,3 +107,5 @@ body {
     height: 1dvh;
     
 }
+
+
