@@ -7,7 +7,7 @@ body {
 /* Responsavel pela maioria das divs */
 
 .tela {
-    width: 69%;
+    width: 85%;
     border-right: 0.55dvw solid gray;
     border-left: 0.55dvw solid gray;
 }
@@ -44,13 +44,15 @@ body {
 }
 
 .imagemeinterativo {
-    background-color: rgb(255, 255, 255);
+    
     width: 100%;
     height: 49dvh;
+    background-image: url(Imagens/Depósito\ \(1\).jpg);
+    background-repeat: round;
 }
 
 .footer {
-    background-color: blue;
+    background-color: #0bbb66;
     width: 100%;
     height: 35dvh;
 }
@@ -112,7 +114,7 @@ body {
 /* O espaçador entre header e o footer */
 
 .space{
-    background-color: #0bbb66;
+    background-color: #d3b368;
     width: 100%;
     height: 1dvh;
     
