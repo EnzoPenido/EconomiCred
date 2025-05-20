@@ -115,19 +115,26 @@ body {
 .botao_tela{
     border-radius: 20px;
     background-color: #0bbb66;
-    width: 40%;
-    height: 20%;
+    width: 80%;
+    height: 12dvh;
     text-align: center;
     justify-content: center;
     display: flex;
     align-items: center;
     margin-left: auto;
     margin-right: 2%;
-    position: relative;
-    top: 11%;
     font-size: 30px;
+	margin-top: 12%;
 }
 
+.botao_direita{
+	width: 50%;
+	margin-left: auto;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+	padding: 1px;
+}
 
 /* O espaçador entre header e o footer */
 

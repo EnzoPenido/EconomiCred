@@ -56,22 +56,54 @@ body {
     background-color: #0bbb66;
     width: 100%;
     height: 35%;
+    display: flex;
 }
 .texto1{
-    top: 30%;
     position: relative;
-    width: 300px;
-}
-.texto1 p{
+    width: 30%;
+    font-size: 50px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 40px;
-    width: 300px;
-    position: relative;
-    
+    top: 40%;
     left: 5%;
+    height: 5%;
 }
 .texto2{
-    width: 200px;
+    color: #d3b368;
+    top: 20%;
+    left: 37%;
+    width: 40%;
+    position: relative;
+    font-size: 50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    height: 5%;
+    text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000,
+     0px -1px 0 #000,
+    -1px  0px 0 #000,
+     1px  0px 0 #000,
+     0px  1px 0 #000;
+}
+.texto3{
+    color: #ffffff;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+    height: 5%;
+    width: 40%;
+    position: relative;
+    top: 35%;
+    right: 8%;
+    text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000,
+     0px -1px 0 #000,
+    -1px  0px 0 #000,
+     1px  0px 0 #000,
+     0px  1px 0 #000;
 }
 
 /* Configuração dos botões e seus layouts */
