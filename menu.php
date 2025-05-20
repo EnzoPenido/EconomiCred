@@ -1,0 +1,3 @@
+<?php
+$texto = 'texto aleatorio'
+?>
