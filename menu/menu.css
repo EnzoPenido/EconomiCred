@@ -8,12 +8,13 @@ body {
 
 .tela {
     width: 85%;
-    border-right: 0.55dvw solid gray;
-    border-left: 0.55dvw solid gray;
+    border-right: 0.8dvw solid gray;
+    border-left: 0.8dvw solid gray;
 }
 
 .tudo {
     display: flex;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 /* Configuração de tamanhos das divs principais e seus layout */

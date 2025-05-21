@@ -57,7 +57,10 @@ body {
     height: 35%;
     display: flex;
 }
-.texto1{
+
+/* Texto do footer */
+
+.texto1{ /*SAQ: 4002-8922*/
     position: relative;
     width: 30%;
     font-size: 50px;
@@ -66,7 +69,7 @@ body {
     left: 5%;
     height: 5%;
 }
-.texto2{
+.texto2{ /*O melhor banco 24H*/
     color: #d3b368;
     top: 20%;
     left: 37%;
@@ -85,7 +88,7 @@ body {
      1px  0px 0 #000,
      0px  1px 0 #000;
 }
-.texto3{
+.texto3{ /*Sempre perto de você!*/
     color: #ffffff;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 50px;
@@ -146,7 +149,7 @@ body {
     border-radius: 20px;
     background-color: #0bbb66;
     width: 40%;
-    height: 9dvh;
+    height: 10dvh;
     text-align: center;
     justify-content: center;
     display: flex;
