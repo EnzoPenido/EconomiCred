@@ -21,7 +21,7 @@ body {
 .header {
     background-color: aliceblue;
     width: 100%;
-    height: 15dvh;
+    height: 14dvh;
     display: flex;
     align-items: center;
 }
@@ -44,7 +44,7 @@ body {
 }
 
 .imagemeinterativo {
-    
+    display: flex;
     width: 100%;
     height: 85dvh;
     background-image: url(/Imagens/fundo-de-imagem.jpg);
@@ -112,28 +112,119 @@ body {
 
 /* Botão da tela */
 
-.botao_tela{
+/* Botão da direita */
+
+.botao_topdir{
     border-radius: 20px;
     background-color: #0bbb66;
     width: 80%;
-    height: 12dvh;
+    height: 10dvh;
     text-align: center;
     justify-content: center;
     display: flex;
     align-items: center;
     margin-left: auto;
-    margin-right: 2%;
+    margin-right: 4%;
     font-size: 30px;
-	margin-top: 12%;
+    position: relative;
+    top: 6.5%;
+}
+
+.botao_meiodir{
+    border-radius: 20px;
+    background-color: #0bbb66;
+    width: 80%;
+    height: 10dvh;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 4%;
+    font-size: 30px;
+    position: relative;
+    top: 24%;
+}
+
+.botao_baixodir{
+    border-radius: 20px;
+    background-color: #0bbb66;
+    width: 80%;
+    height: 10dvh;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 4%;
+    font-size: 30px;
+    position: relative;
+    top: 41.4%;
 }
 
 .botao_direita{
 	width: 50%;
-	margin-left: auto;
 	height: 100%;
 	align-items: center;
 	justify-content: center;
-	padding: 1px;
+}
+
+/* Botão da esquerda */
+
+.botao_topesq{
+    border-radius: 20px;
+    background-color: #0bbb66;
+    width: 80%;
+    height: 10dvh;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    margin-left: 4%;
+    font-size: 30px;
+    position: relative;
+    top: 6.5%;
+}
+
+.botao_meioesq{
+    border-radius: 20px;
+    background-color: #0bbb66;
+    width: 80%;
+    height: 10dvh;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    margin-left: 4%;
+    font-size: 30px;
+    position: relative;
+    top: 24%;
+}
+
+.botao_baixoesq{
+    border-radius: 20px;
+    background-color: #0bbb66;
+    width: 80%;
+    height: 10dvh;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    margin-left: 4%;
+    font-size: 30px;
+    position: relative;
+    top: 41.4%;
+}
+
+
+.botao_esquerda{
+	width: 50%;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
 }
 
 /* O espaçador entre header e o footer */
@@ -142,7 +233,6 @@ body {
     background-color: #d3b368;
     width: 100%;
     height: 1dvh;
-    
 }
 
 
