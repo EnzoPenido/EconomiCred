@@ -44,7 +44,7 @@ body {
     margin-right: 5%;
 }
 
-.imagemeinterativo {
+.interativo {
     display: flex;
     width: 100%;
     height: 85dvh;
@@ -52,11 +52,21 @@ body {
     background-repeat: round;
 }
 
+.interativovalor{
+    width: 100%;
+    height: 85dvh;
+    display: block;
+    text-align: center;
+    padding-top: 18%;
+
+}
+
 .footer {
     background-color: #0bbb66;
     width: 100%;
-    height: 35dvh;
+    height: 35dvh;  
 }
+
 .texto1{
     margin: 0;
     margin-left: 2%;
@@ -66,8 +76,22 @@ body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 40px;
 }
+
 .texto2{
     margin: 0;
+}
+
+.textovalor{
+    font-size: 6dvh;
+    padding-bottom: 2dvh;
+}
+
+/* Remove as setas do input number */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* Configuração dos botões e seus layouts */
@@ -98,6 +122,14 @@ body {
 	height: 12%;
 	width: 45%;
 	
+}
+
+.inserirvalor input{
+    height: 4dvh;
+    width: 29dvw;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 25px
 }
 
 /* Animação do botão */
@@ -163,6 +195,38 @@ body {
     top: 41.4%;
 }
 
+.botao_voltar{
+    border-radius: 20px;
+    background-color: #0bbb66;
+    width: 80%;
+    height: 10dvh;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 4%;
+    font-size: 30px;
+    position: relative;
+    top: 65%;
+}
+
+.botao_voltar_valor{
+    border-radius: 20px;
+    background-color: #0bbb66;
+    width: 80%;
+    height: 10dvh;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 4%;
+    font-size: 30px;
+    position: relative;
+    top: 65%;
+}
+
 .botao_direita{
 	width: 50%;
 	height: 100%;
@@ -219,7 +283,6 @@ body {
     position: relative;
     top: 41.4%;
 }
-
 
 .botao_esquerda{
 	width: 50%;
