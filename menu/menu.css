@@ -48,8 +48,6 @@ body {
     display: flex;
     width: 100%;
     height: 85dvh;
-    background-image: url(/Imagens/fundo-de-imagem.jpg);
-    background-repeat: round;
 }
 
 .interativovalor{

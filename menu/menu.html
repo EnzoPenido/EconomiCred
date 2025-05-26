@@ -11,15 +11,17 @@
 </head>
 
 <body>
-    <audio src="/Audio/beep.mp3" autoplay></audio>
+
+    <audio src="/Sons/beep.mp3" id="som"></audio>
+
     <!-- Aqui estão os botões da esquerda -->
 
     <div class="tudo">
         <div class="botoes">
             <div class="spacerbtn"></div>
-            <input type="button" class="botao" onclick="location.href='/Operações/deposito.html'">
-            <input type="button" class="botao" onclick="location.href='#'">
-            <input type="button" class="botao" onclick="location.href='#'">
+            <input type="button" class="botao" onclick="tocarComAtraso('/Operações/deposito.html')">
+            <input type="button" class="botao" onclick="tocarComAtraso('#')">
+            <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <div class="spacerbtn"></div>
         </div>
 
@@ -87,13 +89,23 @@
 
         <div class="botoes">
             <div class="spacerbtn"></div>
-            <input type="button" class="botao" onclick="location.href='#'">
-            <input type="button" class="botao" onclick="location.href='#'">
-            <input type="button" class="botao" onclick="location.href='/index.html'">
+            <input type="button" class="botao" onclick="tocarComAtraso('#')">
+            <input type="button" class="botao" onclick="tocarComAtraso('#')">
+            <input type="button" class="botao" onclick="tocarComAtraso('/index.html')">
             <div class="spacerbtn"></div>
         </div>
 
     </div>
+
+<script>
+  function tocarComAtraso(url) {
+    const audio = document.getElementById('som');
+    audio.play();
+    setTimeout(() => {
+      window.location.href = url;
+    }, 500); // tempo em milissegundos
+  }
+</script>
 
 </body>
 
