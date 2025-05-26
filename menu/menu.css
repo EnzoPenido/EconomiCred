@@ -48,7 +48,25 @@ body {
     display: flex;
     width: 100%;
     height: 85dvh;
+    background-image: url(/Imagens/bg-menu-teste2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
+
+
+.footer_op{
+    display: flex;
+    width:100%;
+    height:32dvh;
+}
+
+.meio_op{
+    width: 100%;
+    height: 53vh;
+}
+
+/* Tela quando está colocando valores */
 
 .interativovalor{
     width: 100%;
@@ -64,6 +82,8 @@ body {
     width: 100%;
     height: 35dvh;  
 }
+
+/* Textos principais */
 
 .texto1{
     margin: 0;
@@ -82,6 +102,10 @@ body {
 .textovalor{
     font-size: 6dvh;
     padding-bottom: 2dvh;
+}
+
+.inserir_valor_texto{
+    font-size: 30px;
 }
 
 /* Remove as setas do input number */
@@ -122,12 +146,30 @@ input::-webkit-inner-spin-button {
 	
 }
 
-.inserirvalor input{
+.meio_op{
+    text-align: center;
+    
+}
+
+.meio_op input{
     height: 4dvh;
     width: 29dvw;
     border-radius: 20px;
     text-align: center;
     font-size: 25px
+}
+
+.meio_op span{
+    position: relative;
+    top: 50%;
+    left: 20%;
+}
+
+.meio_op input{
+    position: relative;
+    text-align: center;
+    right: 8%;
+    top: 62%
 }
 
 /* Animação do botão */
@@ -209,20 +251,38 @@ input::-webkit-inner-spin-button {
     top: 65%;
 }
 
+/* Botões específicos a telas de inserir senhas */
+
 .botao_voltar_valor{
     border-radius: 20px;
     background-color: #0bbb66;
-    width: 80%;
+    width: 40%;
+    height: 10dvh;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    margin-left: 2%;
+    font-size: 30px;
+    position: relative;
+    top: 6.1%;
+}
+
+.botao_confirmar_valor{
+    border-radius: 20px;
+    background-color: #0bbb66;
+    width: 40%;
     height: 10dvh;
     text-align: center;
     justify-content: center;
     display: flex;
     align-items: center;
     margin-left: auto;
-    margin-right: 4%;
+    margin-right: 2%;
     font-size: 30px;
     position: relative;
-    top: 65%;
+    top: 6.1%;
 }
 
 .botao_direita{

@@ -58,6 +58,8 @@ body {
     display: flex;
 }
 
+
+
 /* Texto do footer */
 
 .texto1{ /*SAQ: 4002-8922*/
@@ -78,7 +80,7 @@ body {
     font-size: 50px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     height: 5%;
-    text-shadow:
+    text-shadow: /*Efeito "3D" do botão*/
     -1px -1px 0 #000,
      1px -1px 0 #000,
     -1px  1px 0 #000,
@@ -97,7 +99,7 @@ body {
     position: relative;
     top: 35%;
     right: 8%;
-    text-shadow:
+    text-shadow: /*Efeito "3D" do botão*/
     -1px -1px 0 #000,
      1px -1px 0 #000,
     -1px  1px 0 #000,

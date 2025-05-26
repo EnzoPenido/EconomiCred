@@ -19,9 +19,9 @@
     <div class="tudo">
         <div class="botoes">
             <div class="spacerbtn"></div>
-            <input type="button" class="botao" onclick="location.href='#'">
-            <input type="button" class="botao" onclick="location.href='#'">
-            <input type="button" class="botao" onclick="location.href='#'">
+            <input type="button" class="botao" onclick="tocarComAtraso('/Operações/d_conta_corrente.html')">
+            <input type="button" class="botao" onclick="tocarComAtraso('/Operações/d_conta_poupanca.html')">
+            <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <div class="spacerbtn"></div>
         </div>
 
@@ -78,21 +78,21 @@
 
         <div class="botoes">
             <div class="spacerbtn"></div>
-            <input type="button" class="botao" onclick="location.href='#'">
-            <input type="button" class="botao" onclick="location.href='#'">
-            <input type="button" class="botao" onclick="location.href='/menu/menu.html'">
+            <input type="button" class="botao" onclick="tocarComAtraso('#')">
+            <input type="button" class="botao" onclick="tocarComAtraso('#')">
+            <input type="button" class="botao" onclick="tocarComAtraso('/menu/menu.html')">
             <div class="spacerbtn"></div>
         </div>
 
     </div>
 
-    <script>
+<script>
   function tocarComAtraso(url) {
     const audio = document.getElementById('som');
     audio.play();
     setTimeout(() => {
       window.location.href = url;
-    }, 500); // tempo em milissegundos
+    }, 550); // tempo em milissegundos
   }
 </script>
 
