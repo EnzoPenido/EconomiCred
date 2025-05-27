@@ -161,15 +161,17 @@ input::-webkit-inner-spin-button {
     text-align: center;
     top: 62%;
     background-color: #d8d2d2;
+    right: 17%;
 }
 
-.meio_op h1{ /* muda a posição do texto "Valor a ser sacado da conta corrente*/
-    width: 20%;
+.meio_op i{ /* muda a posição do texto "Valor a ser sacado da conta corrente*/
+    width: 10%;
     height: 3.5dvh;
     position: relative;
     top: 50%;
     margin: 0;
-    left: 40%;
+    right: -19%;
+    font-style: normal;
 }
 
 /* Animação do botão */
