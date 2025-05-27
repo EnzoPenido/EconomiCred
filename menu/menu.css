@@ -111,6 +111,7 @@ body {
 
 .inserir_valor_texto{
     font-size: 30px;
+    width: 18%;
 }
 
 /* Remove as setas do input number */
@@ -151,6 +152,9 @@ input::-webkit-inner-spin-button {
 	
 }
 
+.inputsaldo{
+    display: none;
+}
 
 .meio_op input{
     height: 4dvh;
@@ -161,17 +165,17 @@ input::-webkit-inner-spin-button {
     text-align: center;
     top: 62%;
     background-color: #d8d2d2;
-    right: 17%;
 }
 
 .meio_op i{ /* muda a posição do texto "Valor a ser sacado da conta corrente*/
-    width: 10%;
+    width: 18%;
     height: 3.5dvh;
     position: relative;
     top: 50%;
     margin: 0;
-    right: -19%;
+    left: 42%;
     font-style: normal;
+    display: flex;
 }
 
 /* Animação do botão */

@@ -12,6 +12,7 @@
 <body>
 
     <audio src="/Sons/beep.mp3" id="som"></audio>
+    <audio src="/Sons/saque_deposito.mp3" id="somdinheiro"></audio>
 
     <!-- Aqui estão os botões da esquerda -->
 
@@ -20,7 +21,7 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="button" class="botao" onclick="tocarComAtraso('credito.html')">
+            <input type="button" class="botao" onclick="tocarComAtraso('/menu/menu.html')">
             <div class="spacerbtn"></div>
         </div>
 
@@ -92,6 +93,15 @@
     setTimeout(() => {
       window.location.href = url;
     }, 550); // tempo em milissegundos
+  }
+
+  function audioDinheiro(url){
+    const audio = document.getElementById('somdinheiro');
+    audio.play();
+
+    setTimeout(() => {
+        window.location.href = url;
+    }, 600);
   }
 </script>
 </body>
