@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="stylesheet" href="/menu/menu.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EconomiCred - Página Inicial</title>
+    <link rel="shortcut icon" href="/Imagens/iconmaior.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <audio src="/Sons/beep.mp3" id="som"></audio>
+
+    <!-- Aqui estão os botões da esquerda -->
+
+    <div class="tudo">
+        <div class="botoes">
+            <div class="spacerbtn"></div>
+            <input type="button" class="botao" onclick="tocarComAtraso('#')">
+            <input type="button" class="botao" onclick="tocarComAtraso('#')">
+            <input type="button" class="botao" onclick="tocarComAtraso('/Operações/deposito.html')">
+            <div class="spacerbtn"></div>
+        </div>
+
+        <div class="border">
+
+        </div>
+
+        <!-- Aqui está a "tela" do caixa -->
+         
+        <div class="tela">
+            
+            <!-- Header com imagem e propaganda -->
+
+            <div class="header">
+                <div class="logo_header">
+                    <img src="/Imagens/LogoComNome.png">
+                </div>
+                <div class="banco24h">
+                    <img src="/Imagens/Banco24h.png">
+                </div>
+            </div>
+
+            <div class="space">
+                <!-- Espaçador -->
+            </div>
+            
+            <!-- Tela principal -->
+
+            <div class="d_conta_corrente_tudo">
+                <div class="meio_op">
+                
+                        <span class="inserir_valor_texto">Valor a ser sacado</span>
+                        <input type="number" name="valor" id="valor">
+                
+                </div>
+                <div class="footer_op">
+                
+                    <div class="botao_voltar_valor">
+                        <span>Voltar</span>
+                    </div>
+                
+                    <div class="botao_confirmar_valor">
+                    <span>Confirmar</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Aqui estão os botões da direita -->
+
+        <div class="botoes">
+            <div class="spacerbtn"></div>
+            <input type="button" class="botao" onclick="tocarComAtraso('#')">
+            <input type="button" class="botao" onclick="tocarComAtraso('#')">
+            <input type="submit" class="botao" onclick="tocarComAtraso('#')" value="">
+            <div class="spacerbtn"></div>
+        </div>
+    </div>
+
+    
+<script>
+  function tocarComAtraso(url) {
+    const audio = document.getElementById('som');
+    audio.play();
+    setTimeout(() => {
+      window.location.href = url;
+    }, 550); // tempo em milissegundos
+  }
+</script>
+</body>
+
+</html>
