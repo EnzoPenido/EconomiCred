@@ -1,35 +1,27 @@
+
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EconomiCred - Login</title>
-</head>
-<body>
-    <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <link rel="stylesheet" href="/menu/menu.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EconomiCred - Login</title>
-    <link rel="shortcut icon" href="/Imagens/iconmaior.ico" type="image/x-icon">
+    <title>EconomiCred - Página Inicial</title>
+    
 </head>
 
 <body>
 
     <audio src="/Sons/beep.mp3" id="som"></audio>
-    <audio src="/Sons/saque_deposito.mp3" id="somdinheiro"></audio>
 
     <!-- Aqui estão os botões da esquerda -->
 
     <div class="tudo">
         <div class="botoes">
             <div class="spacerbtn"></div>
+            <input type="button" class="botao" onclick="tocarComAtraso('d_conta_corrente.html')">
+            <input type="button" class="botao" onclick="tocarComAtraso('d_conta_poupanca.html')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="button" class="botao" onclick="tocarComAtraso('/index.html')">
             <div class="spacerbtn"></div>
         </div>
 
@@ -41,11 +33,9 @@
          
         <div class="tela">
             
-            <!-- Header com imagem e propaganda -->
-
             <div class="header">
                 <div class="logo_header">
-                    <img src="/Imagens/LogoComNome.png">
+                    <img src="/Imagens/Logocomnome.png">
                 </div>
                 <div class="banco24h">
                     <img src="/Imagens/Banco24h.png">
@@ -53,32 +43,34 @@
             </div>
 
             <div class="space">
-                <!-- Espaçador -->
+
             </div>
             
-            <!-- Tela principal -->
+            <div class="interativo">
 
-            <div class="tudo_op">
-                <div class="meio_op">
+                <div class="botao_esquerda">
 
-                    <i class="inserir_valor_texto">Número da sua conta:</i>
-                    <input type="number" name="valor" id="valor">
+                    <div class="botao_topesq">
+                        <p>Conta corrente</p>
+                    </div>
+
+                    <div class="botao_meioesq">
+                        <p>Conta poupança</p>
+                    </div>
+
 
                 </div>
 
-                <div class="footer_op">
-                
-                    <div class="botao_voltar_valor">
-                        <span>Voltar</span>
-                    </div>
-                
-                    <div class="botao_confirmar_valor">
-                        <span>Confirmar</span>
+                <div class="botao_direita">
+
+                    <div class="botao_voltar">
+                        <p>Voltar</p>
                     </div>
 
                 </div>
                 
             </div>
+            
             
         </div>
 
@@ -88,12 +80,12 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="submit" class="botao" onclick="tocarComAtraso('/menu/senha.html')" value="">
+            <input type="button" class="botao" onclick="tocarComAtraso('/menu/menu.html')">
             <div class="spacerbtn"></div>
         </div>
+
     </div>
 
-    
 <script>
   function tocarComAtraso(url) {
     const audio = document.getElementById('som');
@@ -103,8 +95,7 @@
     }, 550); // tempo em milissegundos
   }
 </script>
+
 </body>
 
-</html>
-</body>
 </html>
