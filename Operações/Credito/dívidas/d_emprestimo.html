@@ -1,26 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EconomiCred - Login</title>
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="pt-br">
 
 <head>
     <link rel="stylesheet" href="/menu/menu.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EconomiCred - Login</title>
+    <title>EconomiCred - Página Inicial</title>
     <link rel="shortcut icon" href="/Imagens/iconmaior.ico" type="image/x-icon">
 </head>
 
 <body>
 
     <audio src="/Sons/beep.mp3" id="som"></audio>
-    <audio src="/Sons/saque_deposito.mp3" id="somdinheiro"></audio>
 
     <!-- Aqui estão os botões da esquerda -->
 
@@ -29,7 +20,7 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="button" class="botao" onclick="tocarComAtraso('/index.html')">
+            <input type="button" class="botao" onclick="tocarComAtraso('dividas.html')">
             <div class="spacerbtn"></div>
         </div>
 
@@ -38,9 +29,9 @@
         </div>
 
         <!-- Aqui está a "tela" do caixa -->
-         
+
         <div class="tela">
-            
+
             <!-- Header com imagem e propaganda -->
 
             <div class="header">
@@ -55,34 +46,28 @@
             <div class="space">
                 <!-- Espaçador -->
             </div>
-            
+
             <!-- Tela principal -->
 
-            <div class="tudo_op">
+            <div class="d_conta_corrente_tudo">
                 <div class="meio_op">
 
-                    <div class="numero_da_conta">
-                        <span>Número da sua conta:</span>
-                    </div>
-                        <input type="number" name="valor" id="valor" autofocus>
-                    
+                    <span class="inserir_valor_texto">Divida:</span>
+                    <div class="mostrar_div_emprestimo">R$2000</div>
 
                 </div>
-
                 <div class="footer_op">
-                
+
                     <div class="botao_voltar_valor">
                         <span>Voltar</span>
                     </div>
-                
-                    <div class="botao_confirmar_valor">
-                        <span>Confirmar</span>
-                    </div>
 
+                    <div class="botao_confirmar_valor">
+                        <span>Olhar valor</span>
+                    </div>
                 </div>
-                
             </div>
-            
+
         </div>
 
         <!-- Aqui estão os botões da direita -->
@@ -91,23 +76,22 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="submit" class="botao" onclick="tocarComAtraso('/menu/senha.html')" value="">
+            <input type="button" class="botao" onclick="tocarComAtraso('d_confirmar_emprestimo.html')">
             <div class="spacerbtn"></div>
         </div>
     </div>
 
-    
-<script>
-  function tocarComAtraso(url) {
-    const audio = document.getElementById('som');
-    audio.play();
-    setTimeout(() => {
-      window.location.href = url;
-    }, 550); // tempo em milissegundos
-  }
-</script>
+
+    <script>
+        function tocarComAtraso(url) {
+            const audio = document.getElementById('som');
+            audio.play();
+            setTimeout(() => {
+                window.location.href = url;
+            }, 550); // tempo em milissegundos
+        }
+
+    </script>
 </body>
 
-</html>
-</body>
 </html>
