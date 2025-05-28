@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EconomiCred - Login</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="pt-br">
 
 <head>
     <link rel="stylesheet" href="/menu/menu.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EconomiCred - Página Inicial</title>
+    <title>EconomiCred - Login</title>
     <link rel="shortcut icon" href="/Imagens/iconmaior.ico" type="image/x-icon">
 </head>
 
 <body>
 
     <audio src="/Sons/beep.mp3" id="som"></audio>
+    <audio src="/Sons/saque_deposito.mp3" id="somdinheiro"></audio>
 
     <!-- Aqui estão os botões da esquerda -->
 
@@ -20,7 +29,7 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="button" class="botao" onclick="tocarComAtraso('saldo.html')">
+            <input type="button" class="botao" onclick="tocarComAtraso('/index.html')">
             <div class="spacerbtn"></div>
         </div>
 
@@ -49,13 +58,14 @@
             
             <!-- Tela principal -->
 
-            <div class="d_conta_corrente_tudo">
+            <div class="tudo_op">
                 <div class="meio_op">
-                
-                        <span class="inserir_valor_texto">Saldo:</span>
-                        <input type="number" name="valor" id="valor" class="inputsaldo">
-                
+
+                    <i class="inserir_valor_texto">Número da sua conta:</i>
+                    <input type="number" name="valor" id="valor">
+
                 </div>
+
                 <div class="footer_op">
                 
                     <div class="botao_voltar_valor">
@@ -63,9 +73,11 @@
                     </div>
                 
                     <div class="botao_confirmar_valor">
-                    <span>Olhar valor</span>
+                        <span>Confirmar</span>
                     </div>
+
                 </div>
+                
             </div>
             
         </div>
@@ -76,7 +88,7 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="button" class="botao" onclick="mostrarSaldo()">
+            <input type="submit" class="botao" onclick="audioDinheiro('#')" value="">
             <div class="spacerbtn"></div>
         </div>
     </div>
@@ -91,19 +103,17 @@
     }, 550); // tempo em milissegundos
   }
 
-  function mostrarSaldo(){
-    const audio = document.getElementById('som');
-    const saldo = document.getElementById('valor')
-    
+  function audioDinheiro(url){
+    const audio = document.getElementById('somdinheiro');
     audio.play();
 
-    if (saldo.style.display === 'block'){
-        saldo.style.display = 'none'
-    } else {
-        saldo.style.display = 'block'
-    }
-  }
+    setTimeout(() => {
+        window.location.href = url;
+    }, 600);
+  }  
 </script>
 </body>
 
+</html>
+</body>
 </html>

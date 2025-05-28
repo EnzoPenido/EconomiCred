@@ -53,7 +53,7 @@ body {
     background-size: cover;
 }
 
-.d_conta_corrente_tudo{
+.tudo_op{
     background-image: url(/Imagens/bg-menu-teste2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -69,6 +69,31 @@ body {
     text-align: center;
     height: 50dvh;
     width: 100%;
+}
+
+.inputsaldo{
+    display: none;
+}
+
+.meio_op input{
+    height: 4dvh;
+    width: 29dvw;
+    border-radius: 20px;
+    font-size: 25px;
+    position: relative;
+    text-align: center;
+    top: 62%;
+    background-color: #d8d2d2;
+}
+
+.meio_op i{ /* muda a posição do texto "Valor a ser sacado da conta corrente" */
+    width: 22%;
+    height: 3.5dvh;
+    position: relative;
+    top: 51%;
+    margin: auto;
+    font-style: normal;
+    display: flex;
 }
 
 /* Tela quando está colocando valores */
@@ -152,31 +177,7 @@ input::-webkit-inner-spin-button {
 	
 }
 
-.inputsaldo{
-    display: none;
-}
 
-.meio_op input{
-    height: 4dvh;
-    width: 29dvw;
-    border-radius: 20px;
-    font-size: 25px;
-    position: relative;
-    text-align: center;
-    top: 62%;
-    background-color: #d8d2d2;
-}
-
-.meio_op i{ /* muda a posição do texto "Valor a ser sacado da conta corrente*/
-    width: 18%;
-    height: 3.5dvh;
-    position: relative;
-    top: 50%;
-    margin: 0;
-    left: 42%;
-    font-style: normal;
-    display: flex;
-}
 
 /* Animação do botão */
 

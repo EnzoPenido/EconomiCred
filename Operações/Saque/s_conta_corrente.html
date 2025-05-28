@@ -12,6 +12,7 @@
 <body>
 
     <audio src="/Sons/beep.mp3" id="som"></audio>
+    <audio src="/Sons/saque_deposito.mp3" id="somdinheiro"></audio>
 
     <!-- Aqui estão os botões da esquerda -->
 
@@ -20,7 +21,7 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="button" class="botao" onclick="tocarComAtraso('saldo.html')">
+            <input type="button" class="botao" onclick="tocarComAtraso('saque.html')">
             <div class="spacerbtn"></div>
         </div>
 
@@ -51,11 +52,12 @@
 
             <div class="d_conta_corrente_tudo">
                 <div class="meio_op">
-                
-                        <span class="inserir_valor_texto">Saldo:</span>
-                        <input type="number" name="valor" id="valor" class="inputsaldo">
-                
+
+                    <i class="inserir_valor_texto">Valor a ser sacado <br> da conta corrente</i>
+                    <input type="number" name="valor" id="valor">
+
                 </div>
+
                 <div class="footer_op">
                 
                     <div class="botao_voltar_valor">
@@ -63,9 +65,11 @@
                     </div>
                 
                     <div class="botao_confirmar_valor">
-                    <span>Olhar valor</span>
+                        <span>Confirmar</span>
                     </div>
+
                 </div>
+                
             </div>
             
         </div>
@@ -76,7 +80,7 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="button" class="botao" onclick="mostrarSaldo()">
+            <input type="submit" class="botao" onclick="audioDinheiro('#')" value="">
             <div class="spacerbtn"></div>
         </div>
     </div>
@@ -91,18 +95,14 @@
     }, 550); // tempo em milissegundos
   }
 
-  function mostrarSaldo(){
-    const audio = document.getElementById('som');
-    const saldo = document.getElementById('valor')
-    
+  function audioDinheiro(url){
+    const audio = document.getElementById('somdinheiro');
     audio.play();
 
-    if (saldo.style.display === 'block'){
-        saldo.style.display = 'none'
-    } else {
-        saldo.style.display = 'block'
-    }
-  }
+    setTimeout(() => {
+        window.location.href = url;
+    }, 600);
+  }  
 </script>
 </body>
 
