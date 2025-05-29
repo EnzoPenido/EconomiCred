@@ -12,9 +12,12 @@ body {
     border-left: 0.8dvw solid gray;
 }
 
+/* font-family: "Lexend",Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+
 .tudo {
     display: flex;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: "Lexend", sans-serif;
+    font-weight: 500;
 }
 
 /* Configuração de tamanhos das divs principais e seus layout */
@@ -53,6 +56,8 @@ body {
     background-size: cover;
 }
 
+/* Layout específico para inserção de valores */
+
 .tudo_op {
     background-image: url(/Imagens/bg-menu-teste2.jpg);
     background-repeat: no-repeat;
@@ -73,6 +78,16 @@ body {
 
 .inputsaldo {
     display: none;
+    height: 10dvh;
+    width: 35dvw;
+    border-radius: 50px;
+    font-size: 43px;
+    position: relative;
+    text-align: center;
+    top: 56%;
+    left: 27%;
+    background-color: #d8d2d2;
+    outline: none;
 }
 
 .meio_op input {
@@ -141,13 +156,24 @@ body {
     padding-bottom: 2dvh;
 }
 
-.numero_da_conta {
+.saldo{
     font-size: 40px;
     width: 27%;
     height: 3.5dvh;
     position: relative;
     top: 50%;
-    left: 37.5%;
+    left: 47%;
+    font-style: normal;
+    display: flex;
+}
+
+.numero_da_conta {
+    font-size: 40px;
+    width: 29%;
+    height: 3.5dvh;
+    position: relative;
+    top: 50%;
+    left: 35.5%;
     font-style: normal;
     display: flex;
 }
@@ -158,7 +184,6 @@ body {
     height: 3.5dvh;
     position: relative;
     top: 50%;
-    left: 2%;
     margin: auto;
     font-style: normal;
     display: flex;
@@ -177,11 +202,11 @@ body {
 }
 
 .inserir_valor_texto {
-    font-size: 42px;
-    width: 29%;
+    font-size: 37px;
+    width: 30%;
     height: 3.5dvh;
     position: relative;
-    top: 40%;
+    top: 42%;
     margin: auto;
     font-style: normal;
     display: flex;
@@ -266,6 +291,8 @@ input::-webkit-inner-spin-button {
     font-size: 30px;
     position: relative;
     top: 6.5%;
+    border: 2px solid #d3b368;
+    color: #ffffff;
 }
 
 .botao_meiodir {
@@ -282,6 +309,8 @@ input::-webkit-inner-spin-button {
     font-size: 30px;
     position: relative;
     top: 24%;
+    border: 2px solid #d3b368;
+    color: #ffffff;
 }
 
 .botao_baixodir {
@@ -298,6 +327,8 @@ input::-webkit-inner-spin-button {
     font-size: 30px;
     position: relative;
     top: 41.4%;
+    border: 2px solid #d3b368;
+    color: #ffffff;
 }
 
 .botao_voltar {
@@ -314,6 +345,8 @@ input::-webkit-inner-spin-button {
     font-size: 30px;
     position: relative;
     top: 65%;
+    border: 2px solid #d3b368;
+    color: #ffffff;
 }
 
 /* Botões específicos a telas de inserir senhas */
@@ -331,7 +364,9 @@ input::-webkit-inner-spin-button {
     margin-left: 2%;
     font-size: 30px;
     position: relative;
-    top: 15%;
+    top: 7%;
+    border: 2px solid #d3b368;
+    color: #ffffff;
 }
 
 .botao_confirmar_valor {
@@ -347,7 +382,9 @@ input::-webkit-inner-spin-button {
     margin-right: 2%;
     font-size: 30px;
     position: relative;
-    top: 14%;
+    top: 7%;
+    border: 2px solid #d3b368;
+    color: #ffffff;
 }
 
 .botao_direita {
@@ -373,6 +410,8 @@ input::-webkit-inner-spin-button {
     font-size: 30px;
     position: relative;
     top: 6.5%;
+    border: 2px solid #d3b368;
+    color: #ffffff;
 }
 
 .botao_meioesq {
@@ -389,6 +428,8 @@ input::-webkit-inner-spin-button {
     font-size: 30px;
     position: relative;
     top: 24%;
+    border: 2px solid #d3b368;
+    color: #ffffff;
 }
 
 .botao_baixoesq {
@@ -405,6 +446,8 @@ input::-webkit-inner-spin-button {
     font-size: 30px;
     position: relative;
     top: 41.4%;
+    border: 2px solid #d3b368;
+    color: #ffffff;
 }
 
 .botao_esquerda {
