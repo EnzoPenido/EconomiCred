@@ -220,6 +220,17 @@ body {
     left: 3%;
 }
 
+.texto_confirmar{
+    font-size: 60px;
+    width: 40%;
+    height: 3.5dvh;
+    position: relative;
+    top: 50%;
+    margin: auto;
+    font-style: normal;
+    display: flex;
+}
+
 /* Remove as setas do input number */
 
 input::-webkit-outer-spin-button,
