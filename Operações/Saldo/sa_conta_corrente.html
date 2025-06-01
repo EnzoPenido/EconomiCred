@@ -53,7 +53,8 @@
                 <div class="meio_op">
                 
                         <span class="saldo_texto">Saldo:</span>
-                <input type="number" name="valor" id="valor" class="inputsaldo">
+                        <div class="mostrar_valores" id="saldo">R$2000</div>
+                        
                 </div>
                 
 
@@ -96,7 +97,7 @@
 
   function mostrarSaldo(){
     const audio = document.getElementById('som');
-    const saldo = document.getElementById('valor')
+    const saldo = document.getElementById('saldo')
     
     audio.play();
 
