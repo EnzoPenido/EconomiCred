@@ -118,6 +118,23 @@ body {
     padding-bottom: 1.5%;
 }
 
+.tampar_valores{
+    height: 5dvh;
+    width: 35dvw;
+    border-radius: 50px;
+    font-size: 43px;
+    position: relative;
+    text-align: center;
+    top: 34.7%;
+    background-color: darkgray;
+    outline: none;
+    border: 2px solid rgb(118, 118, 118);
+    margin: auto;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    z-index: 1;
+}
+
 /* Tela quando está colocando valores */
 
 .interativovalor {
