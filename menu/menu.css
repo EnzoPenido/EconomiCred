@@ -74,6 +74,8 @@ body {
     text-align: center;
     height: 53dvh;
     width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .inputsaldo {
@@ -133,6 +135,19 @@ body {
     padding-top: 1.5%;
     padding-bottom: 1.5%;
     z-index: 1;
+}
+
+.fundo_texto_confirmar{
+    display: flex;
+    width: 60%;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+    top: 17%; 
+    height: 70%;
+    border-radius: 20px;
+    background-color: aliceblue;
 }
 
 /* Tela quando está colocando valores */
@@ -224,9 +239,10 @@ body {
     height: 3.5dvh;
     position: relative;
     top: 42%;
-    margin: auto;
+    left: 35%;
     font-style: normal;
     display: flex;
+    justify-content: center;
 }
 
 .inserir_valor_texto_s {
@@ -239,11 +255,6 @@ body {
 
 .texto_confirmar{
     font-size: 60px;
-    width: 40%;
-    height: 3.5dvh;
-    position: relative;
-    top: 50%;
-    margin: auto;
     font-style: normal;
     display: flex;
 }
