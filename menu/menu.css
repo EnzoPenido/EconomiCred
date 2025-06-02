@@ -127,7 +127,7 @@ body {
     font-size: 43px;
     position: relative;
     text-align: center;
-    top: 34.7%;
+    top: 37.5%;
     background-color: darkgray;
     outline: none;
     border: 2px solid rgb(118, 118, 118);
@@ -135,6 +135,7 @@ body {
     padding-top: 1.5%;
     padding-bottom: 1.5%;
     z-index: 1;
+    display: block;
 }
 
 .fundo_texto_confirmar{
