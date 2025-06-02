@@ -147,8 +147,9 @@ body {
     position: relative;
     top: 17%; 
     height: 70%;
-    border-radius: 20px;
-    background-color: aliceblue;
+    border-radius: 50px;
+    background-color: #d8d2d2;
+    opacity: 95%;
 }
 
 /* Tela quando está colocando valores */
@@ -255,9 +256,13 @@ body {
 }
 
 .texto_confirmar{
-    font-size: 60px;
+    font-size: 50px;
     font-style: normal;
     display: flex;
+    position: relative;
+    top: -30%;
+    left: 24.5%;
+    width: 60%;
 }
 
 /* Remove as setas do input number */

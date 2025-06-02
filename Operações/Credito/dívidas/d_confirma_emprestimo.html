@@ -90,11 +90,11 @@
 
     <script>
         function tocarComAtraso(url) {
-            const audio = document.getElementById('som');
+            const audio = new Audio('/Sons/beep.mp3');
             audio.play();
             setTimeout(() => {
                 window.location.href = url;
-            }, 550); // tempo em milissegundos
+            }, 550);
         }
 
         function audioDinheiro(url) {
@@ -103,7 +103,7 @@
 
             setTimeout(() => {
                 window.location.href = url;
-            }, 600);
+            }, 1250);
         }
     </script>
 </body>

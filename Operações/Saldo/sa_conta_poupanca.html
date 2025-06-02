@@ -98,11 +98,11 @@
             saldo.style.display = 'block';
         }
         function tocarComAtraso(url) {
-            const audio = document.getElementById('som');
+            const audio = new Audio('/Sons/beep.mp3');
             audio.play();
             setTimeout(() => {
                 window.location.href = url;
-            }, 550); // Tempo em milissegundos
+            }, 550);
         }
     </script>
 </body>

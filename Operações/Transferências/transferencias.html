@@ -30,9 +30,9 @@
         </div>
 
         <!-- Aqui está a "tela" do caixa -->
-         
+
         <div class="tela">
-            
+
             <!-- Header com imagem e propaganda -->
 
             <div class="header">
@@ -47,30 +47,30 @@
             <div class="space">
                 <!-- Espaçador -->
             </div>
-            
+
             <!-- Tela principal -->
 
             <div class="tudo_op">
                 <div class="meio_op">
 
-                    <span class="inserir_valor_texto">Insira o valor para transferir</span> 
+                    <span class="inserir_valor_texto">Insira o valor para transferir</span>
                     <input type="number" name="valor" id="valor" autofocus>
 
                 </div>
 
                 <div class="footer_op">
-                
+
                     <div class="botao_voltar_valor">
                         <span>Voltar</span>
                     </div>
-                
+
                     <div class="botao_confirmar_valor">
-                    	<span>Confirmar</span>
+                        <span>Confirmar</span>
                     </div>
 
                 </div>
             </div>
-            
+
         </div>
 
         <!-- Aqui estão os botões da direita -->
@@ -84,16 +84,17 @@
         </div>
     </div>
 
-    
-<script>
-  function tocarComAtraso(url) {
-    const audio = document.getElementById('som');
-    audio.play();
-    setTimeout(() => {
-      window.location.href = url;
-    }, 550); // tempo em milissegundos
-  }
-</script>
+
+    <script>
+        function tocarComAtraso(url) {
+            const audio = new Audio('/Sons/beep.mp3');
+            audio.play();
+            setTimeout(() => {
+                window.location.href = url;
+            }, 550);
+        }
+    </script>
+
 </body>
 
 </html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -7,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EconomiCred - Página Inicial</title>
-    
+
 </head>
 
 <body>
@@ -30,9 +29,9 @@
         </div>
 
         <!-- Aqui está a "tela" do caixa -->
-         
+
         <div class="tela">
-            
+
             <div class="header">
                 <div class="logo_header">
                     <img src="/Imagens/Logocomnome.png">
@@ -45,7 +44,7 @@
             <div class="space">
 
             </div>
-            
+
             <div class="interativo">
 
                 <div class="botao_esquerda">
@@ -68,10 +67,10 @@
                     </div>
 
                 </div>
-                
+
             </div>
-            
-            
+
+
         </div>
 
         <!-- Aqui estão os botões da direita -->
@@ -86,15 +85,15 @@
 
     </div>
 
-<script>
-  function tocarComAtraso(url) {
-    const audio = document.getElementById('som');
-    audio.play();
-    setTimeout(() => {
-      window.location.href = url;
-    }, 550); // tempo em milissegundos
-  }
-</script>
+    <script>
+        function tocarComAtraso(url) {
+            const audio = new Audio('/Sons/beep.mp3');
+            audio.play();
+            setTimeout(() => {
+                window.location.href = url;
+            }, 550);
+        }
+    </script>
 
 </body>
 
