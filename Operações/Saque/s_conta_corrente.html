@@ -56,7 +56,7 @@
                     <div class="saque_conta_corrente">
                         <span>Valor a ser sacado da conta corrente:</span>
                     </div>
-                    <input type="number" name="valor" id="valor" autofocus>
+                    <input type="number" name="valor" id="valor" autofocus style="caret-color: transparent;">
 
                 </div>
 
@@ -98,16 +98,15 @@
                 window.location.href = url;
             }, 550);
         }
-
         function audioDinheiro(url) {
-            const audio = document.getElementById('somdinheiro');
+            const audio = new Audio('/Sons/saque_deposito.mp3');
             audio.play();
-
             setTimeout(() => {
                 window.location.href = url;
             }, 1250);
-        }  
+        }
     </script>
+
 </body>
 
 </html>

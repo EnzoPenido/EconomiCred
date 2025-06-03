@@ -54,7 +54,7 @@
                 <div class="meio_op">
 
                     <span class="inserir_valor_texto">Valor a ser sacado da conta poupança:</span>
-                    <input type="number" name="valor" id="valor" autofocus>
+                    <input type="number" name="valor" id="valor" autofocus style="caret-color: transparent;">
 
                 </div>
 
@@ -94,16 +94,15 @@
                 window.location.href = url;
             }, 550);
         }
-
         function audioDinheiro(url) {
-            const audio = document.getElementById('somdinheiro');
+            const audio = new Audio('/Sons/saque_deposito.mp3');
             audio.play();
-
             setTimeout(() => {
                 window.location.href = url;
             }, 1250);
         }
     </script>
+
 </body>
 
 </html>

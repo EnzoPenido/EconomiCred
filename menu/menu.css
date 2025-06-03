@@ -52,6 +52,7 @@ body {
     width: 100%;
     height: 85dvh;
     background-image: url(/Imagens/bg-menu-teste4.jpg);
+    /* /Imagens/Foto-ultimo-teste.jpg */
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -120,7 +121,7 @@ body {
     padding-bottom: 1.5%;
 }
 
-.tampar_valores{
+.tampar_valores {
     height: 5dvh;
     width: 35dvw;
     border-radius: 50px;
@@ -138,14 +139,14 @@ body {
     display: block;
 }
 
-.fundo_texto_confirmar{
+.fundo_texto_confirmar {
     display: flex;
     width: 60%;
     align-items: center;
     justify-content: center;
     margin: auto;
     position: relative;
-    top: 17%; 
+    top: 17%;
     height: 70%;
     border-radius: 50px;
     background-color: #d8d2d2;
@@ -190,7 +191,7 @@ body {
     padding-bottom: 2dvh;
 }
 
-.saldo_texto{
+.saldo_texto {
     font-size: 40px;
     width: 27%;
     height: 3.5dvh;
@@ -255,7 +256,7 @@ body {
     left: 3%;
 }
 
-.texto_confirmar{
+.texto_confirmar {
     font-size: 50px;
     font-style: normal;
     display: flex;
@@ -274,12 +275,12 @@ input::-webkit-inner-spin-button {
 }
 
 input[type="number"] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 input::-ms-reveal,
 input::-ms-clear {
-  display: none;
+    display: none;
 }
 
 /* Configuração dos botões e seus layouts */

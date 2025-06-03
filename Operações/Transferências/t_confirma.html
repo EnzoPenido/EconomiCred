@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/menu/menu.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EconomiCred - Página Inicial</title>
+    <title>EconomiCred - confirmar</title>
     <link rel="shortcut icon" href="/Imagens/iconmaior.ico" type="image/x-icon">
 </head>
 
@@ -54,7 +54,9 @@
                 <div class="meio_op">
 
                     <span class="inserir_valor_texto">Confirme a transferência colocando a sua senha:</span>
-                    <input type="password" name="valor" id="valor" autofocus>
+                    <input type="password" name="valor" id="valor" autofocus style="caret-color: transparent;"
+                        maxlength="6" pattern="\d*" inputmode="numeric"
+                        oninput="this.value = this.value.replace(/\D/g, '')">
 
                 </div>
 
@@ -96,16 +98,15 @@
                 window.location.href = url;
             }, 550);
         }
-
         function audioDinheiro(url) {
-            const audio = document.getElementById('somdinheiro');
+            const audio = new Audio('/Sons/saque_deposito.mp3');
             audio.play();
-
             setTimeout(() => {
                 window.location.href = url;
             }, 1250);
         }
     </script>
+
 </body>
 
 </html>
