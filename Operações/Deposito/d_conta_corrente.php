@@ -24,8 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $saldo = $_SESSION['saldo'];
 
 
-
-
 ?>
 
 
@@ -42,6 +40,9 @@ $saldo = $_SESSION['saldo'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EconomiCred - Página Inicial</title>
     <link rel="shortcut icon" href="../../Imagens/iconmaior.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@450&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -72,10 +73,10 @@ $saldo = $_SESSION['saldo'];
 
             <div class="header">
                 <div class="logo_header">
-                    <img src="../Imagens/Logocomcome.png">
+                    <img src="../../Imagens/Logocomnome.png">
                 </div>
                 <div class="banco24h">
-                    <img src="../Imagens/Banco24h.png">
+                    <img src="../../Imagens/Banco24h.png">
                 </div>
             </div>
 
@@ -89,7 +90,8 @@ $saldo = $_SESSION['saldo'];
                 <div class="meio_op">
 
                     <i class="inserir_valor_texto">Valor a ser depositado <br> na conta corrente:</i>
-                    <input type="number" name="valor" id="valor" autofocus style="caret-color: transparent;">
+                    <input type="number" name="valor" id="valor" autofocus style="caret-color: transparent;" pattern="\d*" inputmode="numeric"
+                        oninput="this.value = this.value.replace(/\D/g, '')">
 
                 </div>
 
@@ -117,7 +119,7 @@ $saldo = $_SESSION['saldo'];
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="submit" class="botao" onclick="audioDinheiro('/menu/operacao_concluida.html')" value="">
+            <input type="submit" class="botao" onclick="audioDinheiro('../../menu/confirmar_operacao.html')" value="">
             <div class="spacerbtn"></div>
         </div>
     </div>
@@ -125,14 +127,14 @@ $saldo = $_SESSION['saldo'];
 
     <script>
         function tocarComAtraso(url) {
-            const audio = new Audio('/Sons/beep.mp3');
+            const audio = new Audio('../../Sons/beep.mp3');
             audio.play();
             setTimeout(() => {
                 window.location.href = url;
             }, 550);
         }
         function audioDinheiro(url) {
-            const audio = new Audio('/Sons/saque_deposito.mp3');
+            const audio = new Audio('../../Sons/saque_deposito.mp3');
             audio.play();
             setTimeout(() => {
                 window.location.href = url;

@@ -26,11 +26,14 @@ $saldo = $_SESSION['saldo'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EconomiCred - Página Inicial</title>
     <link rel="shortcut icon" href="../../Imagens/iconmaior.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@450&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-    <audio src="/Sons/beep.mp3" id="som"></audio>
+    <audio src="../../Sons/beep.mp3" id="som"></audio>
 
     <!-- Aqui estão os botões da esquerda -->
 
@@ -55,7 +58,7 @@ $saldo = $_SESSION['saldo'];
 
             <div class="header">
                 <div class="logo_header">
-                    <img src="../../Imagens/LogoComNome.png">
+                    <img src="../../Imagens/Logocomnome.png">
                 </div>
                 <div class="banco24h">
                     <img src="../../Imagens/Banco24h.png">

@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EconomiCred - Página Inicial</title>
     <link rel="shortcut icon" href="../../Imagens/iconmaior.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@450&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -53,7 +56,8 @@
                     <div class="saque_conta_corrente">
                         <span>Valor a ser sacado da conta corrente:</span>
                     </div>
-                    <input type="number" name="valor" id="valor" autofocus style="caret-color: transparent;">
+                    <input type="number" name="valor" id="valor" autofocus style="caret-color: transparent;" pattern="\d*" inputmode="numeric"
+                        oninput="this.value = this.value.replace(/\D/g, '')">
 
                 </div>
 
@@ -81,7 +85,7 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="submit" class="botao" onclick="audioDinheiro('../../menu/operacao_concluida.html')" value="">
+            <input type="submit" class="botao" onclick="audioDinheiro('../../menu/confirmar_operacao.html')" value="">
             <div class="spacerbtn"></div>
         </div>
     </div>
