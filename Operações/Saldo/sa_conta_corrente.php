@@ -1,12 +1,31 @@
+<?php
+session_start();
+
+// Saldo inicial, só uma vez
+if (!isset($_SESSION['saldo'])) {
+    $_SESSION['saldo'] = 3451;
+}
+$saldo = $_SESSION['saldo'];
+?>
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-    <link rel="stylesheet" href="/menu/menu.css">
+    <link rel="stylesheet" href="../../menu/menu.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EconomiCred - Página Inicial</title>
-    <link rel="shortcut icon" href="/Imagens/iconmaior.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../Imagens/iconmaior.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -36,10 +55,10 @@
 
             <div class="header">
                 <div class="logo_header">
-                    <img src="/Imagens/LogoComNome.png">
+                    <img src="../../Imagens/LogoComNome.png">
                 </div>
                 <div class="banco24h">
-                    <img src="/Imagens/Banco24h.png">
+                    <img src="../../Imagens/Banco24h.png">
                 </div>
             </div>
 
@@ -53,7 +72,7 @@
                 <div class="meio_op">
 
                     <span class="saldo_texto">Saldo:</span>
-                    <div class="mostrar_valores">R$2000</div>
+                    <div class="mostrar_valores">R$<?php echo $saldo; ?></div>
                     <div class="tampar_valores" id="saldo"></div>
 
                 </div>
@@ -103,7 +122,7 @@
         }
 
         function tocarComAtraso(url) {
-            const audio = new Audio('/Sons/beep.mp3');
+            const audio = new Audio('../../Sons/beep.mp3');
             audio.play();
             setTimeout(() => {
                 window.location.href = url;

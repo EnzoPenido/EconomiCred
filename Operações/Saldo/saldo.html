@@ -2,24 +2,22 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="stylesheet" href="/menu/menu.css">
+    <link rel="stylesheet" href="../../menu/menu.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EconomiCred - Página Inicial</title>
-
+    <link rel="shortcut icon" href="../../Imagens/iconmaior.ico" type="image/x-icon">
 </head>
 
 <body>
-
-    <audio src="/Sons/beep.mp3" id="som"></audio>
 
     <!-- Aqui estão os botões da esquerda -->
 
     <div class="tudo">
         <div class="botoes">
             <div class="spacerbtn"></div>
-            <input type="button" class="botao" onclick="tocarComAtraso('sa_conta_corrente.html')">
-            <input type="button" class="botao" onclick="tocarComAtraso('sa_conta_poupanca.html')">
+            <input type="button" class="botao" onclick="tocarComAtraso('sa_conta_corrente.php')">
+            <input type="button" class="botao" onclick="tocarComAtraso('sa_conta_poupanca.php')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <div class="spacerbtn"></div>
         </div>
@@ -34,10 +32,10 @@
 
             <div class="header">
                 <div class="logo_header">
-                    <img src="/Imagens/Logocomnome.png">
+                    <img src="../../Imagens/Logocomnome.png">
                 </div>
                 <div class="banco24h">
-                    <img src="/Imagens/Banco24h.png">
+                    <img src="../../Imagens/Banco24h.png">
                 </div>
             </div>
 
@@ -80,7 +78,7 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="button" class="botao" onclick="tocarComAtraso('/menu/menu.html')">
+            <input type="button" class="botao" onclick="tocarComAtraso('../../menu/menu.html')">
             <div class="spacerbtn"></div>
         </div>
 
@@ -90,7 +88,7 @@
 
     <script>
         function tocarComAtraso(url) {
-            const audio = new Audio('/Sons/beep.mp3');
+            const audio = new Audio('../../Sons/beep.mp3');
             audio.play();
             setTimeout(() => {
                 window.location.href = url;

@@ -1,8 +1,25 @@
+<?php
+session_start();
+
+// Saldo inicial, só uma vez
+if (!isset($_SESSION['saldoPOUP'])) {
+    $_SESSION['saldoPOUP'] = 3451;
+}
+$saldoPOUP = $_SESSION['saldoPOUP'];
+?>
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-    <link rel="stylesheet" href="/menu/menu.css">
+    <link rel="stylesheet" href="../../menu/menu.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EconomiCred - Página Inicial</title>
@@ -12,7 +29,6 @@
 <body>
 
     <audio src="/Sons/beep.mp3" id="som"></audio>
-    <audio src="/Sons/saque_deposito.mp3" id="somdinheiro"></audio>
 
     <!-- Aqui estão os botões da esquerda -->
 
@@ -21,7 +37,7 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="button" class="botao" onclick="tocarComAtraso('deposito.html')">
+            <input type="button" class="botao" onclick="tocarComAtraso('saldo.html')">
             <div class="spacerbtn"></div>
         </div>
 
@@ -37,10 +53,10 @@
 
             <div class="header">
                 <div class="logo_header">
-                    <img src="/Imagens/LogoComNome.png">
+                    <img src="../../Imagens/LogoComNome.png">
                 </div>
                 <div class="banco24h">
-                    <img src="/Imagens/Banco24h.png">
+                    <img src="../../Imagens/Banco24h.png">
                 </div>
             </div>
 
@@ -53,12 +69,13 @@
             <div class="tudo_op">
                 <div class="meio_op">
 
-                    <i class="inserir_valor_texto">Valor a ser depositado <br> na conta corrente:</i>
-                    <input type="number" name="valor" id="valor" autofocus style="caret-color: transparent;">
+                    <span class="saldo_texto">Saldo:</span>
+                    <div class="mostrar_valores">R$<?php echo $saldoPOUP; ?></div>
+                    <div class="tampar_valores" id="saldo"></div>
 
                 </div>
 
-                <!-- Aqui temos um divisor entre o imput e os botões falsos -->
+                <!-- Aqui temos um divisor entre o input e os botões falsos -->
 
                 <div class="footer_op">
 
@@ -67,11 +84,9 @@
                     </div>
 
                     <div class="botao_confirmar_valor">
-                        <span>Confirmar</span>
+                        <span>Olhar valor</span>
                     </div>
-
                 </div>
-
             </div>
 
         </div>
@@ -82,29 +97,31 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="submit" class="botao" onclick="audioDinheiro('/menu/operacao_concluida.html')" value="">
+            <input type="button" class="botao" onmousedown="segurarSaldo()" onmouseup="soltarSaldo()">
             <div class="spacerbtn"></div>
         </div>
     </div>
 
 
     <script>
+        function segurarSaldo() {
+            const audio = document.getElementById('som');
+            const saldo = document.getElementById('saldo');
+            audio.play();
+            saldo.style.display = 'none';
+        }
+        function soltarSaldo() { // Função para quando soltar o botão
+            const saldo = document.getElementById('saldo');
+            saldo.style.display = 'block';
+        }
         function tocarComAtraso(url) {
-            const audio = new Audio('/Sons/beep.mp3');
+            const audio = new Audio('../../Sons/beep.mp3');
             audio.play();
             setTimeout(() => {
                 window.location.href = url;
             }, 550);
         }
-        function audioDinheiro(url) {
-            const audio = new Audio('/Sons/saque_deposito.mp3');
-            audio.play();
-            setTimeout(() => {
-                window.location.href = url;
-            }, 1250);
-        }
     </script>
-
 </body>
 
 </html>
