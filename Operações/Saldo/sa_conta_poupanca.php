@@ -105,6 +105,7 @@ $saldoPOUP = $_SESSION['saldoPOUP'];
         </div>
     </div>
 
+    <!-- Script responsável pelos sons e encaminhamento de paginas -->
 
     <script>
         function segurarSaldo() {
@@ -117,9 +118,11 @@ $saldoPOUP = $_SESSION['saldoPOUP'];
             const saldo = document.getElementById('saldo');
             saldo.style.display = 'block';
         }
+        const beep = new Audio('../../Sons/beep.mp3');
+
         function tocarComAtraso(url) {
-            const audio = new Audio('../../Sons/beep.mp3');
-            audio.play();
+            beep.currentTime = 0; // Reinicia o som se já tiver sido tocado
+            beep.play();
             setTimeout(() => {
                 window.location.href = url;
             }, 550);

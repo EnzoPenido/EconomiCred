@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    
+
     <div class="tudo">
         <div class="botoes">
             <div class="spacerbtn"></div>
@@ -67,10 +67,14 @@
         </div>
     </div>
 
+    <!-- Script responsável pelos sons e encaminhamento de paginas -->
+
     <script>
+        const beep = new Audio('./Sons/beep.mp3');
+
         function tocarComAtraso(url) {
-            const audio = new Audio('./Sons/beep.mp3');
-            audio.play();
+            beep.currentTime = 0; // Reinicia o som se já tiver sido tocado
+            beep.play();
             setTimeout(() => {
                 window.location.href = url;
             }, 550);

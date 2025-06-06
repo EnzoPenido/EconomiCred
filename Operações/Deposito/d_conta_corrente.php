@@ -89,7 +89,7 @@ $saldo = $_SESSION['saldo'];
             <div class="tudo_op">
                 <div class="meio_op">
 
-                    <i class="inserir_valor_texto">Valor a ser depositado <br> na conta corrente:</i>
+                    <i class="inserir_valor_texto">Valor a ser depositado na conta corrente:</i>
                     <input type="number" name="valor" id="valor" autofocus style="caret-color: transparent;" pattern="\d*" inputmode="numeric"
                         oninput="this.value = this.value.replace(/\D/g, '')">
 
@@ -119,26 +119,22 @@ $saldo = $_SESSION['saldo'];
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="submit" class="botao" onclick="audioDinheiro('../../menu/confirmar_operacao.html')" value="">
+            <input type="submit" class="botao" onclick="tocarComAtraso('../../menu/confirmar_operacao.html')" value="">
             <div class="spacerbtn"></div>
         </div>
     </div>
 
+    <!-- Script responsável pelos sons e encaminhamento de paginas -->
 
     <script>
+        const beep = new Audio('../../Sons/beep.mp3');
+
         function tocarComAtraso(url) {
-            const audio = new Audio('../../Sons/beep.mp3');
-            audio.play();
+            beep.currentTime = 0; // Reinicia o som se já tiver sido tocado
+            beep.play();
             setTimeout(() => {
                 window.location.href = url;
             }, 550);
-        }
-        function audioDinheiro(url) {
-            const audio = new Audio('../../Sons/saque_deposito.mp3');
-            audio.play();
-            setTimeout(() => {
-                window.location.href = url;
-            }, 1250);
         }
     </script>
 

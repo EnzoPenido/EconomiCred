@@ -3,8 +3,7 @@ body {
     margin: 0;
 }
 
-/* Responsavel pela maioria das divs */
-
+/* Responsável pela maioria das divs */
 .tela {
     width: 85%;
     border-right: 0.8dvw solid gray;
@@ -12,7 +11,6 @@ body {
 }
 
 /* font-family: "Lexend",Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
-
 .tudo {
     display: flex;
     font-family: "Lexend", sans-serif;
@@ -20,7 +18,6 @@ body {
 }
 
 /* Configuração de tamanhos das divs principais e seus layout */
-
 .header {
     background-color: aliceblue;
     width: 100%;
@@ -56,7 +53,6 @@ body {
 }
 
 /* Layout específico para inserção de valores */
-
 .tudo_op {
     background-image: url(../Imagens/bg-menu-teste4.jpg);
     background-color: red;
@@ -140,9 +136,7 @@ body {
 
 .fundo_texto_confirmar {
     display: flex;
-    width: 60%;
-    align-items: center;
-    justify-content: center;
+    width: 65%;
     margin: auto;
     position: relative;
     top: 17%;
@@ -153,14 +147,12 @@ body {
 }
 
 /* Tela quando está colocando valores */
-
 .interativovalor {
     width: 100%;
     height: 85dvh;
     display: block;
     text-align: center;
     padding-top: 18%;
-
 }
 
 .footer {
@@ -170,7 +162,6 @@ body {
 }
 
 /* Textos principais */
-
 .texto1 {
     margin: 0;
     margin-left: 2%;
@@ -213,8 +204,8 @@ body {
 }
 
 .senha_da_conta {
-    font-size: 45px;
-    width: 27%;
+    font-size: 40px;
+    width: 25%;
     height: 3.5dvh;
     position: relative;
     top: 50%;
@@ -224,11 +215,11 @@ body {
 }
 
 .saque_conta_corrente {
-    font-size: 45px;
-    width: 28%;
+    font-size: 37px;
+    width: 30%;
     height: 3.5dvh;
     position: relative;
-    top: 38%;
+    top: 41%;
     left: 1%;
     margin: auto;
     font-style: normal;
@@ -237,11 +228,23 @@ body {
 
 .inserir_valor_texto {
     font-size: 37px;
-    width: 30%;
+    width: 32%;
     height: 3.5dvh;
     position: relative;
     top: 42%;
     left: 35%;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+}
+
+.texto_confirmar_t {
+    font-size: 37px;
+    width: 35%;
+    height: 3.5dvh;
+    position: relative;
+    top: 42%;
+    margin: auto;
     font-style: normal;
     display: flex;
     justify-content: center;
@@ -265,8 +268,7 @@ body {
     width: 60%;
 }
 
-/* Remove as setas do input number */
-
+/* Remove as setas do input number e também o "ver senha" */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -283,7 +285,6 @@ input::-ms-clear {
 }
 
 /* Configuração dos botões e seus layouts */
-
 .botoes {
     display: flex;
     justify-content: space-around;
@@ -300,91 +301,32 @@ input::-ms-clear {
     width: 45%;
     background-color: #d8d2d2;
     border: 2px solid #aaa;
-    /* borda cinza escura */
     box-shadow: 0 6px 0 #666;
     padding: 10px 20px;
     font-weight: bold;
     transition: transform 0.1s ease, box-shadow 0.1s ease;
-    /* Configuração da animação */
 }
 
 .botao a {
     height: 12%;
     width: 45%;
-
 }
 
 /* Animação do botão */
-
 .botao:hover {
     transform: translateY(1px);
-    /* leve afundamento */
     box-shadow: 0 4px 0 #666;
 }
 
 .botao:active {
     transform: translateY(6px);
-    /* afundamento completo */
     box-shadow: 0 0 0 #666;
 }
 
-
-/* Botão da direita */
-
-.botao_topdir {
-    border-radius: 20px;
-    background-color: #0bbb66;
-    width: 80%;
-    height: 10dvh;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    margin-right: 4%;
-    font-size: 30px;
-    position: relative;
-    top: 6.5%;
-    border: 2px solid #d3b368;
-    color: #ffffff;
-}
-
-.botao_meiodir {
-    border-radius: 20px;
-    background-color: #0bbb66;
-    width: 80%;
-    height: 10dvh;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    margin-right: 4%;
-    font-size: 30px;
-    position: relative;
-    top: 24%;
-    border: 2px solid #d3b368;
-    color: #ffffff;
-}
-
-.botao_baixodir {
-    border-radius: 20px;
-    background-color: #0bbb66;
-    width: 80%;
-    height: 10dvh;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    margin-right: 4%;
-    font-size: 30px;
-    position: relative;
-    top: 41.4%;
-    border: 2px solid #d3b368;
-    color: #ffffff;
-}
-
+/* Botões da direita */
+.botao_topdir,
+.botao_meiodir,
+.botao_baixodir,
 .botao_voltar {
     border-radius: 20px;
     background-color: #0bbb66;
@@ -397,32 +339,32 @@ input::-ms-clear {
     margin-left: auto;
     margin-right: 4%;
     font-size: 30px;
+    border: 2px solid #d3b368;
+    color: #ffffff;
+}
+
+.botao_topdir {
+    top: 6.5%;
     position: relative;
+}
+
+.botao_meiodir {
+    top: 24%;
+    position: relative;
+}
+
+.botao_baixodir {
+    top: 41.4%;
+    position: relative;
+}
+
+.botao_voltar {
     top: 65%;
-    border: 2px solid #d3b368;
-    color: #ffffff;
-}
-
-/* Botões específicos a telas de inserir senhas */
-
-.botao_voltar_valor {
-    border-radius: 20px;
-    background-color: #0bbb66;
-    width: 40%;
-    height: 10dvh;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    margin-right: auto;
-    margin-left: 2%;
-    font-size: 30px;
     position: relative;
-    top: 7%;
-    border: 2px solid #d3b368;
-    color: #ffffff;
 }
 
+/* Botões específicos para telas de inserir senhas */
+.botao_voltar_valor,
 .botao_confirmar_valor {
     border-radius: 20px;
     background-color: #0bbb66;
@@ -432,13 +374,21 @@ input::-ms-clear {
     justify-content: center;
     display: flex;
     align-items: center;
-    margin-left: auto;
-    margin-right: 2%;
     font-size: 30px;
     position: relative;
     top: 7%;
     border: 2px solid #d3b368;
     color: #ffffff;
+}
+
+.botao_voltar_valor {
+    margin-right: auto;
+    margin-left: 2%;
+}
+
+.botao_confirmar_valor {
+    margin-left: auto;
+    margin-right: 2%;
 }
 
 .botao_direita {
@@ -448,59 +398,39 @@ input::-ms-clear {
     justify-content: center;
 }
 
-/* Botão da esquerda */
-
-.botao_topesq {
-    border-radius: 20px;
-    background-color: #0bbb66;
-    width: 80%;
-    height: 10dvh;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    margin-right: auto;
-    margin-left: 4%;
-    font-size: 30px;
-    position: relative;
-    top: 6.5%;
-    border: 2px solid #d3b368;
-    color: #ffffff;
-}
-
-.botao_meioesq {
-    border-radius: 20px;
-    background-color: #0bbb66;
-    width: 80%;
-    height: 10dvh;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    margin-right: auto;
-    margin-left: 4%;
-    font-size: 30px;
-    position: relative;
-    top: 24%;
-    border: 2px solid #d3b368;
-    color: #ffffff;
-}
-
+/* Botões da esquerda */
+.botao_topesq,
+.botao_meioesq,
 .botao_baixoesq {
     border-radius: 20px;
     background-color: #0bbb66;
     width: 80%;
     height: 10dvh;
-    text-align: center;
     justify-content: center;
     display: flex;
     align-items: center;
-    margin-right: auto;
-    margin-left: 4%;
     font-size: 30px;
     position: relative;
-    top: 41.4%;
     border: 2px solid #d3b368;
+    color: #ffffff;
+}
+
+.botao_topesq {
+    margin-right: auto;
+    margin-left: 4%;
+    top: 6.5%;
+}
+
+.botao_meioesq {
+    margin-right: auto;
+    margin-left: 4%;
+    top: 24%;
+}
+
+.botao_baixoesq {
+    margin-right: auto;
+    margin-left: 4%;
+    top: 41.4%;
     color: #fff;
 }
 
@@ -511,8 +441,7 @@ input::-ms-clear {
     justify-content: center;
 }
 
-/* O espaçador entre header e o footer */
-
+/* O espaçador entre header e o meio */
 .space {
     background-color: #d3b368;
     width: 100%;

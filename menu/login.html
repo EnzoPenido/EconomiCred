@@ -59,12 +59,13 @@
                     <div class="numero_da_conta">
                         <span>Número da sua conta:</span>
                     </div>
-                    <input type="text" name="valor" id="valor" maxlength="6" autofocus 
-                    style="caret-color: transparent;" inputmode="numeric" 
-                    oninput="this.value = this.value.replace(/\D/g, '')">
+                    <input type="text" name="valor" id="valor" maxlength="6" autofocus style="caret-color: transparent;"
+                        inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')">
 
 
                 </div>
+
+                <!-- Divisão entre o input e os botões falsos -->
 
                 <div class="footer_op">
 
@@ -93,11 +94,14 @@
         </div>
     </div>
 
+    <!-- Script responsável pelos sons e encaminhamento de paginas -->
 
     <script>
+        const beep = new Audio('../Sons/beep.mp3');
+
         function tocarComAtraso(url) {
-            const audio = new Audio('../Sons/beep.mp3');
-            audio.play();
+            beep.currentTime = 0; // Reinicia o som se já tiver sido tocado
+            beep.play();
             setTimeout(() => {
                 window.location.href = url;
             }, 550);
