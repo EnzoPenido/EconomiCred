@@ -1,3 +1,26 @@
+<?php
+session_start();
+$erro = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $valor = intval($_POST["valor"]);
+
+    $cedulas_validas = [5, 10, 20, 50, 100];
+
+    // Verifica se o valor é positivo e múltiplo de alguma das cédulas válidas
+    if ($valor <= 0 || $valor > 10000) {
+        $erro = "Valor inválido. Máximo: R$10.000, mínimo: R$5.";
+    } elseif ($valor % 5 !== 0) {
+        $erro = "Não há notas disponíveis para esse valor.";
+    } else {
+        $_SESSION["operacao"] = "saque_poup";
+        $_SESSION["valor"] = $valor;
+        header("Location: ../../menu/confirmar_operacao.php");
+        exit;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -5,7 +28,7 @@
     <link rel="stylesheet" href="../../menu/menu.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EconomiCred - conta transferência</title>
+    <title>EconomiCred - Página Inicial</title>
     <link rel="shortcut icon" href="../../Imagens/iconmaior.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +44,7 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="button" class="botao" onclick="tocarComAtraso('t_valor.html')">
+            <input type="button" class="botao" onclick="tocarComAtraso('saque.html')">
             <div class="spacerbtn"></div>
         </div>
 
@@ -51,30 +74,29 @@
             <!-- Tela principal -->
 
             <div class="tudo_op">
-                <div class="meio_op">
+                <form method="POST" id="form-saque">
+                    <div class="meio_op">
+                        <div class="saque_conta_corrente">
+                            <span>Valor a ser sacado da conta poupança:</span>
+                        </div>
+                        <input type="number" name="valor" id="valor" required autofocus
+                            oninput="this.value = this.value.replace(/\D/g, '')" inputmode="numeric" pattern="\d*"
+                            style="caret-color: transparent;">
 
-                    <div class="inserir_valor_texto">
-                        <span>Número da conta do destinatário:</span>
-                    </div>
-                    <input type="text" name="valor" id="valor" maxlength="6" autofocus style="caret-color: transparent;"
-                        inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')">
-
-                </div>
-
-                <!-- Aqui temos um divisor entre o imput e os botões falsos -->
-
-                <div class="footer_op">
-
-                    <div class="botao_voltar_valor">
-                        <span>Voltar</span>
+                        <?php if (!empty($erro)): ?>
+                            <div class="mensagem-erro"><?= htmlspecialchars($erro) ?></div>
+                        <?php endif; ?>
                     </div>
 
-                    <div class="botao_confirmar_valor">
-                        <span>Confirmar</span>
+                    <div class="footer_op">
+                        <button type="button" class="botao_voltar_valor" onclick="tocarComAtraso('menu.php')">
+                            Voltar
+                        </button>
+                        <button type="submit" class="botao_confirmar_valor">
+                            Confirmar
+                        </button>
                     </div>
-
-                </div>
-
+                </form>
             </div>
 
         </div>
@@ -85,7 +107,7 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="submit" class="botao" onclick="tocarComAtraso('../../menu/confirmar_operacao.html')" value="">
+            <input type="button" class="botao" onclick="enviarFormulario()">
             <div class="spacerbtn"></div>
         </div>
     </div>
@@ -102,9 +124,15 @@
                 window.location.href = url;
             }, 550);
         }
+        function enviarFormulario() {
+            beep.currentTime = 0;
+            beep.play();
+            setTimeout(() => {
+                document.getElementById('form-saque').submit();
+            }, 550);
+        }
     </script>
-</body>
 
-</html>
+</body>
 
 </html>

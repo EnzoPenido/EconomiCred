@@ -98,6 +98,7 @@ body {
     top: 56%;
     background-color: #d8d2d2;
     outline: none;
+    caret-color: transparent;
 }
 
 .mostrar_valores {
@@ -143,7 +144,7 @@ body {
     height: 70%;
     border-radius: 50px;
     background-color: #d8d2d2;
-    opacity: 95%;
+    opacity: 90%;
 }
 
 /* Tela quando está colocando valores */
@@ -179,6 +180,36 @@ body {
 .textovalor {
     font-size: 6dvh;
     padding-bottom: 2dvh;
+}
+
+.mensagem-erro {
+    color: red;
+    text-align: center;
+    font-size: 28px;
+    position: relative;
+    top: 56%;
+    font-weight: bold;
+}
+
+.erro-senha {
+    color: red;
+    font-size: 28px;
+    position: relative;
+    top: 55%;
+    text-align: center;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.saudacao_usuario {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    position: relative;
+    top: 5%;
+    width: 11.86%;
+    color: #d3b368;
+    font-family: 'Lexend', sans-serif;
 }
 
 .saldo_texto {
@@ -446,4 +477,12 @@ input::-ms-clear {
     background-color: #d3b368;
     width: 100%;
     height: 1dvh;
+}
+
+.invisible_submit {
+    background: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+    font-size: 0;
 }

@@ -1,11 +1,21 @@
 <?php
 session_start();
 
-// Saldo inicial, só uma vez
-if (!isset($_SESSION['saldoPOUP'])) {
-    $_SESSION['saldoPOUP'] = 3451;
+$usuarios = json_decode(file_get_contents('../../usuarios.json'), true); // ajuste o caminho
+$usuario_logado = null;
+
+foreach ($usuarios as $u) {
+    if ($u['usernumber'] == $_SESSION['usernumber']) {
+        $usuario_logado = $u;
+        break;
+    }
 }
-$saldoPOUP = $_SESSION['saldoPOUP'];
+
+
+
+
+
+$saldo_poup = $usuario_logado['saldo_poup'] ?? 0; // saldo padrão se não achar
 ?>
 
 
@@ -73,7 +83,7 @@ $saldoPOUP = $_SESSION['saldoPOUP'];
                 <div class="meio_op">
 
                     <span class="saldo_texto">Saldo:</span>
-                    <div class="mostrar_valores">R$<?php echo $saldoPOUP; ?></div>
+                    <div class="mostrar_valores">R$<?php echo $saldo_poup; ?></div>
                     <div class="tampar_valores" id="saldo"></div>
 
                 </div>

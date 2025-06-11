@@ -3,29 +3,32 @@ session_start();
 $erro = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $valor = $_POST['valor'] ?? '';
-    $valor = floatval(str_replace(',', '.', $valor));
+    $usernumber_digitado = $_POST['usernumber'] ?? '';
+    $dados_json = file_get_contents('../usuarios.json');
+    $usuarios = json_decode($dados_json, true);
 
-    if ($valor <= 0) {
-        $erro = true;
-    } else {
-        $_SESSION['valor'] = $valor;
-        $_SESSION['operacao'] = 'deposito_cc';
-        header('Location: ../../menu/confirmar_operacao.php');
-        exit();
+    foreach ($usuarios as $usuario) {
+        if ($usuario['usernumber'] === $usernumber_digitado) {
+            $_SESSION['usernumber'] = $usernumber_digitado;
+            header('Location: senha.php');
+            exit();
+        }
     }
+
+    $erro = true;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-    <link rel="stylesheet" href="../../menu/menu.css">
+    <link rel="stylesheet" href="menu.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EconomiCred - Página Inicial</title>
-    <link rel="shortcut icon" href="../../Imagens/iconmaior.ico" type="image/x-icon">
+    <title>EconomiCred - Login</title>
+    <link rel="shortcut icon" href="../Imagens/iconmaior.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@450&display=swap" rel="stylesheet">
@@ -33,8 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
 
-    <audio src="/Sons/beep.mp3" id="som"></audio>
-    <audio src="/Sons/saque_deposito.mp3" id="somdinheiro"></audio>
+    <audio src="../Sons/beep.mp3" id="som"></audio>
 
     <div class="tudo">
         <!-- Botões da esquerda -->
@@ -42,36 +44,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="button" class="botao" onclick="tocarComAtraso('deposito.html')">
+            <input type="button" class="botao" onclick="tocarComAtraso('../index.html')">
             <div class="spacerbtn"></div>
         </div>
 
         <div class="border"></div>
 
-        <!-- Tela do caixa -->
+        <!-- Tela -->
         <div class="tela">
-            <!-- Header -->
             <div class="header">
                 <div class="logo_header">
-                    <img src="../../Imagens/Logocomnome.png">
+                    <img src="../Imagens/Logocomnome.png">
                 </div>
                 <div class="banco24h">
-                    <img src="../../Imagens/Banco24h.png">
+                    <img src="../Imagens/Banco24h.png">
                 </div>
             </div>
 
             <div class="space"></div>
 
-            <!-- Conteúdo principal -->
-            <form method="post">
+            <!-- Formulário -->
+            <form id="formConta" method="post">
                 <div class="tudo_op">
                     <div class="meio_op">
-                        <i class="inserir_valor_texto">Valor a ser depositado na conta corrente:</i>
-                        <input type="number" name="valor" id="valor" autofocus style="caret-color: transparent;"
-                            pattern="\d*" inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')">
+                        <div class="numero_da_conta">
+                            <span>Número da sua conta:</span>
+                        </div>
+                        <input type="text" name="usernumber" id="valor" maxlength="6" autofocus
+                            style="caret-color: transparent;" inputmode="numeric"
+                            oninput="this.value = this.value.replace(/\D/g, '')">
 
                         <?php if ($erro): ?>
-                            <p class="mensagem-erro" id="mensagem-erro">Valor inválido. Insira um valor maior que zero.</p>
+                            <p class="mensagem-erro" id="mensagem-erro">Conta não encontrada.</p>
                         <?php endif; ?>
                     </div>
 
@@ -98,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script>
-        const beep = new Audio('../../Sons/beep.mp3');
+        const beep = new Audio('../Sons/beep.mp3');
 
         function tocarComAtraso(url) {
             beep.currentTime = 0;
@@ -112,11 +116,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             beep.currentTime = 0;
             beep.play();
             setTimeout(() => {
-                document.querySelector('form').submit();
+                document.getElementById('formConta').submit();
             }, 550);
         }
 
-        // Esconde mensagem de erro após 3 segundos
+        // Desaparece automaticamente após 3 segundos
         setTimeout(() => {
             const msg = document.getElementById('mensagem-erro');
             if (msg) {

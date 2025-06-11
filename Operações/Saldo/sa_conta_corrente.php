@@ -1,21 +1,18 @@
 <?php
 session_start();
 
-// Saldo inicial, só uma vez
-if (!isset($_SESSION['saldo'])) {
-    $_SESSION['saldo'] = 3451;
+$usuarios = json_decode(file_get_contents( '../../usuarios.json'), true); // ajuste o caminho
+$usuario_logado = null;
+
+foreach ($usuarios as $u) {
+    if ($u['usernumber'] == $_SESSION['usernumber']) {
+        $usuario_logado = $u;
+        break;
+    }
 }
-$saldo = $_SESSION['saldo'];
+
+$saldo = $usuario_logado['saldo_corrente'] ?? 0; // saldo padrão se não achar
 ?>
-
-
-
-
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="pt-br">

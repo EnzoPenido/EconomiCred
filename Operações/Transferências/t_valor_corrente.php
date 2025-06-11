@@ -1,3 +1,23 @@
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $valor = isset($_POST['valor']) ? floatval($_POST['valor']) : 0;
+
+    if ($valor <= 0) {
+        $erro = "Insira um valor válido para transferir.";
+    } elseif ($valor > 5000) {
+        $erro = "O valor máximo para transferência é R$ 5.000.";
+    } else {
+        $_SESSION['valor_transferencia'] = $valor;
+        $_SESSION['valor'] = $valor; // ESSENCIAL para confirmar_operacao.php
+        $_SESSION['operacao'] = 'transferencia'; // ESSENCIAL também
+        header("Location: t_conta_corrente.php"); // Página seguinte
+        exit();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -13,7 +33,6 @@
 </head>
 
 <body>
-
     <!-- Aqui estão os botões da esquerda -->
 
     <div class="tudo">
@@ -21,7 +40,7 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="button" class="botao" onclick="tocarComAtraso('saque.html')">
+            <input type="button" class="botao" onclick="tocarComAtraso('transferencias.html')">
             <div class="spacerbtn"></div>
         </div>
 
@@ -37,7 +56,7 @@
 
             <div class="header">
                 <div class="logo_header">
-                    <img src="../../Imagens/LogoComNome.png">
+                    <img src="../../Imagens/Logocomnome.png">
                 </div>
                 <div class="banco24h">
                     <img src="../../Imagens/Banco24h.png">
@@ -49,29 +68,30 @@
             </div>
 
             <!-- Tela principal -->
-
-            <div class="tudo_op">
-                <div class="meio_op">
-
-                    <span class="inserir_valor_texto">Valor a ser sacado da conta poupança:</span>
-                    <input type="number" name="valor" id="valor" autofocus style="caret-color: transparent;"
-                        pattern="\d*" inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')">
-
-                </div>
-
-                <!-- Aqui temos um divisor entre o input e os botões falsos -->
-
-                <div class="footer_op">
-
-                    <div class="botao_voltar_valor">
-                        <span>Voltar</span>
+            <form method="post" id="formValor">
+                <div class="tudo_op">
+                    <div class="meio_op">
+                        <span class="inserir_valor_texto">Insira o valor para transferir</span>
+                        <input type="number" step="0.01" name="valor" id="valor" required max="5000" maxlength="6"
+                            autofocus inputmode="decimal" />
+                        <?php if (isset($erro)): ?>
+                            <div style="color: red; font-weight: bold; text-align: center; margin-bottom: 10px;">
+                                <?= $erro ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
 
-                    <div class="botao_confirmar_valor">
-                        <span>Confirmar</span>
+                    <div class="footer_op">
+                        <div class="botao_voltar_valor">
+                            <span>Voltar</span>
+                        </div>
+                        <button type="submit" class="botao_confirmar_valor">
+                            <span>Confirmar</span>
+                        </button>
                     </div>
                 </div>
-            </div>
+            </form>
+
 
         </div>
 
@@ -81,25 +101,28 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="submit" class="botao" onclick="tocarComAtraso('../../menu/confirmar_operacao.html')" value="">
+            <input type="button" class="botao" onclick="enviarFormulario()" value="">
             <div class="spacerbtn"></div>
         </div>
     </div>
-
-    <!-- Script responsável pelos sons e encaminhamento de paginas -->
 
     <script>
         const beep = new Audio('../../Sons/beep.mp3');
 
         function tocarComAtraso(url) {
-            beep.currentTime = 0; // Reinicia o som se já tiver sido tocado
+            beep.currentTime = 0;
             beep.play();
             setTimeout(() => {
                 window.location.href = url;
             }, 550);
         }
-    </script>
 
+        function enviarFormulario() {
+            tocarComAtraso(() => {
+                document.getElementById('formValor').submit();
+            });
+        }
+    </script>
 </body>
 
 </html>

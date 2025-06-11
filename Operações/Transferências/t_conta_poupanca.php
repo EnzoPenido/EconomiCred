@@ -1,22 +1,34 @@
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $conta_destino = isset($_POST['conta_destino']) ? trim($_POST['conta_destino']) : '';
+
+    if (empty($conta_destino)) {
+        $erro = "Digite o número da conta de destino.";
+    } else {
+        $_SESSION['conta_destino'] = $conta_destino;
+        header("Location: confirmar_operacao.php");
+        exit();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="../../menu/menu.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EconomiCred - Login</title>
-    <link rel="shortcut icon" href="../Imagens/iconmaior.ico" type="image/x-icon">
+    <title>EconomiCred - conta transferência</title>
+    <link rel="shortcut icon" href="../../Imagens/iconmaior.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@450&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <!DOCTYPE html>
-
-    <audio src="../Sons/beep.mp3" id="som"></audio>
-    <audio src="../Sons/saque_deposito.mp3" id="somdinheiro"></audio>
 
     <!-- Aqui estão os botões da esquerda -->
 
@@ -25,7 +37,7 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="button" class="botao" onclick="tocarComAtraso('login.html')">
+            <input type="button" class="botao" onclick="tocarComAtraso('t_valor_poupanca.php')">
             <div class="spacerbtn"></div>
         </div>
 
@@ -41,10 +53,10 @@
 
             <div class="header">
                 <div class="logo_header">
-                    <img src="../Imagens/Logocomnome.png">
+                    <img src="../../Imagens/LogoComNome.png">
                 </div>
                 <div class="banco24h">
-                    <img src="../Imagens/Banco24h.png">
+                    <img src="../../Imagens/Banco24h.png">
                 </div>
             </div>
 
@@ -57,17 +69,15 @@
             <div class="tudo_op">
                 <div class="meio_op">
 
-                    <div class="senha_da_conta">
-                        <span>Insira sua senha:</span>
+                    <div class="inserir_valor_texto">
+                        <span>Número da conta do destinatário:</span>
                     </div>
-                    <input type="password" name="valor" id="valor" autofocus style="caret-color: transparent;"
-                        maxlength="6" pattern="\d*" inputmode="numeric"
-                        oninput="this.value = this.value.replace(/\D/g, '')">
-
+                    <input type="text" name="valor" id="valor" maxlength="6" autofocus style="caret-color: transparent;"
+                        inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')">
 
                 </div>
 
-                <!-- Divisão entre o input e os botões falsos -->
+                <!-- Aqui temos um divisor entre o imput e os botões falsos -->
 
                 <div class="footer_op">
 
@@ -91,7 +101,7 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="submit" class="botao" onclick="tocarComAtraso('#')" value="">
+            <input type="submit" class="botao" onclick="tocarComAtraso('../../menu/confirmar_operacao.php')" value="">
             <div class="spacerbtn"></div>
         </div>
     </div>
@@ -99,7 +109,7 @@
     <!-- Script responsável pelos sons e encaminhamento de paginas -->
 
     <script>
-        const beep = new Audio('../Sons/beep.mp3');
+        const beep = new Audio('../../Sons/beep.mp3');
 
         function tocarComAtraso(url) {
             beep.currentTime = 0; // Reinicia o som se já tiver sido tocado
@@ -111,5 +121,6 @@
     </script>
 </body>
 
+</html>
 
 </html>

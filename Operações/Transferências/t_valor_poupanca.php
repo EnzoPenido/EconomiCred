@@ -1,3 +1,23 @@
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $valor = isset($_POST['valor']) ? floatval($_POST['valor']) : 0;
+
+    if ($valor <= 0) {
+        $erro = "Insira um valor válido para transferir.";
+    } elseif ($valor > 5000) {
+        $erro = "O valor máximo para transferência é R$ 5.000.";
+    } else {
+        $_SESSION['valor_transferencia'] = $valor;
+        $_SESSION['valor'] = $valor; // ESSENCIAL para confirmar_operacao.php
+        $_SESSION['operacao'] = 'transferencia_poupanca'; // Podemos diferenciar se quiser
+        header("Location: t_conta_poupanca.php"); // Página seguinte onde digita a conta de destino
+        exit();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -49,28 +69,29 @@
 
             <!-- Tela principal -->
 
-            <div class="tudo_op">
-                <div class="meio_op">
-
-                    <span class="inserir_valor_texto">Insira o valor para transferir</span>
-                    <input type="number" name="valor" id="valor" autofocus maxlength="6"
-                        style="caret-color: transparent;" pattern="\d*" inputmode="numeric"
-                        oninput="this.value = this.value.replace(/\D/g, '')">
-
-                </div>
-
-                <div class="footer_op">
-
-                    <div class="botao_voltar_valor">
-                        <span>Voltar</span>
+            <form method="post" id="formValor">
+                <div class="tudo_op">
+                    <div class="meio_op">
+                        <span class="inserir_valor_texto">Insira o valor para transferir</span>
+                        <input type="number" step="0.01" name="valor" id="valor" required max="5000" maxlength="6"
+                            autofocus inputmode="decimal" />
+                        <?php if (isset($erro)): ?>
+                            <div>
+                                <?= $erro ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
 
-                    <div class="botao_confirmar_valor">
-                        <span>Confirmar</span>
+                    <div class="footer_op">
+                        <div class="botao_voltar_valor">
+                            <span>Voltar</span>
+                        </div>
+                        <button type="submit" class="botao_confirmar_valor">
+                            <span>Confirmar</span>
+                        </button>
                     </div>
-
                 </div>
-            </div>
+            </form>
 
         </div>
 
@@ -80,7 +101,7 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="submit" class="botao" onclick="tocarComAtraso('t_conta.html')" value="">
+            <input type="button" class="botao" onclick="enviarFormulario()" value="">
             <div class="spacerbtn"></div>
         </div>
     </div>
@@ -90,11 +111,17 @@
         const beep = new Audio('../../Sons/beep.mp3');
 
         function tocarComAtraso(url) {
-            beep.currentTime = 0; // Reinicia o som se já tiver sido tocado
+            beep.currentTime = 0;
             beep.play();
             setTimeout(() => {
                 window.location.href = url;
             }, 550);
+        }
+
+        function enviarFormulario() {
+            tocarComAtraso(() => {
+                document.getElementById('formValor').submit();
+            });
         }
     </script>
 

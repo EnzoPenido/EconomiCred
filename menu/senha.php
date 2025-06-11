@@ -1,18 +1,35 @@
 <?php
 session_start();
-$erro = false;
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $valor = $_POST['valor'] ?? '';
-    $valor = floatval(str_replace(',', '.', $valor));
+$mensagemErro = '';
 
-    if ($valor <= 0) {
-        $erro = true;
+// Verifica se a sessão com o número da conta está ativa
+if (!isset($_SESSION['usernumber'])) {
+    header("Location: login.php");
+    exit;
+}
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $senhaDigitada = $_POST["senha"] ?? '';
+
+    $dadosJson = file_get_contents("../usuarios.json");
+    $usuarios = json_decode($dadosJson, true);
+
+    $conta = $_SESSION['usernumber'];
+    $usuario = null;
+
+    foreach ($usuarios as $u) {
+        if ($u['usernumber'] === $conta) {
+            $usuario = $u;
+            break;
+        }
+    }
+
+    if ($usuario && $usuario["senha"] === $senhaDigitada) {
+        header("Location: menu.php");
+        exit;
     } else {
-        $_SESSION['valor'] = $valor;
-        $_SESSION['operacao'] = 'deposito_cc';
-        header('Location: ../../menu/confirmar_operacao.php');
-        exit();
+        $mensagemErro = "Senha incorreta.";
     }
 }
 ?>
@@ -21,57 +38,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="pt-br">
 
 <head>
-    <link rel="stylesheet" href="../../menu/menu.css">
+    <link rel="stylesheet" href="menu.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EconomiCred - Página Inicial</title>
-    <link rel="shortcut icon" href="../../Imagens/iconmaior.ico" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>EconomiCred - Senha</title>
+    <link rel="shortcut icon" href="../Imagens/iconmaior.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@450&display=swap" rel="stylesheet">
 </head>
 
 <body>
-
-    <audio src="/Sons/beep.mp3" id="som"></audio>
-    <audio src="/Sons/saque_deposito.mp3" id="somdinheiro"></audio>
+    <audio src="../Sons/beep.mp3" id="som"></audio>
 
     <div class="tudo">
-        <!-- Botões da esquerda -->
         <div class="botoes">
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="button" class="botao" onclick="tocarComAtraso('deposito.html')">
+            <input type="button" class="botao" onclick="tocarComAtraso('login.php')">
             <div class="spacerbtn"></div>
         </div>
 
         <div class="border"></div>
 
-        <!-- Tela do caixa -->
         <div class="tela">
-            <!-- Header -->
             <div class="header">
                 <div class="logo_header">
-                    <img src="../../Imagens/Logocomnome.png">
+                    <img src="../Imagens/Logocomnome.png">
                 </div>
                 <div class="banco24h">
-                    <img src="../../Imagens/Banco24h.png">
+                    <img src="../Imagens/Banco24h.png">
                 </div>
             </div>
 
             <div class="space"></div>
 
-            <!-- Conteúdo principal -->
-            <form method="post">
+            <form id="formSenha" method="POST">
                 <div class="tudo_op">
                     <div class="meio_op">
-                        <i class="inserir_valor_texto">Valor a ser depositado na conta corrente:</i>
-                        <input type="number" name="valor" id="valor" autofocus style="caret-color: transparent;"
-                            pattern="\d*" inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')">
+                        <div class="senha_da_conta">
+                            <span>Insira sua senha:</span>
+                        </div>
 
-                        <?php if ($erro): ?>
-                            <p class="mensagem-erro" id="mensagem-erro">Valor inválido. Insira um valor maior que zero.</p>
+                        <input type="password" name="senha" id="valor" autofocus style="caret-color: transparent;"
+                            maxlength="4" pattern="\d*" inputmode="numeric"
+                            oninput="this.value = this.value.replace(/\D/g, '')">
+
+                        <?php if (!empty($mensagemErro)): ?>
+                            <div class="erro-senha" id="mensagem-erro">
+                                <?= $mensagemErro ?>
+                            </div>
                         <?php endif; ?>
                     </div>
 
@@ -80,14 +95,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <span>Voltar</span>
                         </div>
                         <div class="botao_confirmar_valor">
-                            <span>Confirmar</span>
+                            <span onclick="enviarFormulario()">Confirmar</span>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
 
-        <!-- Botões da direita -->
         <div class="botoes">
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
@@ -98,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script>
-        const beep = new Audio('../../Sons/beep.mp3');
+        const beep = new Audio('../Sons/beep.mp3');
 
         function tocarComAtraso(url) {
             beep.currentTime = 0;
@@ -112,11 +126,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             beep.currentTime = 0;
             beep.play();
             setTimeout(() => {
-                document.querySelector('form').submit();
+                document.getElementById('formSenha').submit();
             }, 550);
         }
 
-        // Esconde mensagem de erro após 3 segundos
         setTimeout(() => {
             const msg = document.getElementById('mensagem-erro');
             if (msg) {
@@ -126,7 +139,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }, 2000);
     </script>
-
 </body>
 
 </html>

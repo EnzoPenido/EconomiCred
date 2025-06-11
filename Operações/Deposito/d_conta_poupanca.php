@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erro = true;
     } else {
         $_SESSION['valor'] = $valor;
-        $_SESSION['operacao'] = 'deposito_cc';
+        $_SESSION['operacao'] = 'deposito_poupanca';
         header('Location: ../../menu/confirmar_operacao.php');
         exit();
     }
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form method="post">
                 <div class="tudo_op">
                     <div class="meio_op">
-                        <i class="inserir_valor_texto">Valor a ser depositado na conta corrente:</i>
+                        <span class="inserir_valor_texto">Valor a ser depositado na conta poupança:</span>
                         <input type="number" name="valor" id="valor" autofocus style="caret-color: transparent;"
                             pattern="\d*" inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')">
 
@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }, 550);
         }
 
-        // Esconde mensagem de erro após 3 segundos
+        // Esconde a mensagem de erro após 2 segundos
         setTimeout(() => {
             const msg = document.getElementById('mensagem-erro');
             if (msg) {

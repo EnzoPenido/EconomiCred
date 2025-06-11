@@ -1,3 +1,28 @@
+<?php
+session_start();
+
+// Verifica se a conta está logada
+if (!isset($_SESSION['usernumber'])) {
+    header("Location: login.php");
+    exit;
+}
+
+$usernumber = $_SESSION['usernumber'];
+
+// Lê o arquivo JSON
+$dadosJson = file_get_contents("../usuarios.json");
+$usuarios = json_decode($dadosJson, true);
+
+// Procura o usuário logado
+$nomeUsuario = 'Usuário';
+foreach ($usuarios as $usuario) {
+    if ($usuario['usernumber'] === $usernumber) {
+        $nomeUsuario = $usuario['username'];
+        break;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -40,6 +65,9 @@
                 <div class="logo_header">
                     <img src="../Imagens/Logocomnome.png">
                 </div>
+                <div class="saudacao_usuario">
+                    <?php echo "Olá, " . htmlspecialchars($nomeUsuario) . "!"; ?>
+                </div>
                 <div class="banco24h">
                     <img src="../Imagens/Banco24h.png">
                 </div>
@@ -78,7 +106,7 @@
                     </div>
 
                     <div class="botao_baixodir">
-                        <p>Voltar</p>
+                        <p>Sair</p>
                     </div>
 
                 </div>

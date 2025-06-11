@@ -1,0 +1,38 @@
+[
+    {
+        "username": "Enzo",
+        "usernumber": "483291",
+        "senha": "9185",
+        "saldo_corrente": 1800,
+        "saldo_poup": 2000,
+        "divida_credito": 0,
+        "divida_emprestimo": 0
+    },
+    {
+        "username": "Miguel",
+        "usernumber": "706842",
+        "senha": "6301",
+        "saldo_corrente": 2200,
+        "saldo_poup": 2000,
+        "divida_credito": 0,
+        "divida_emprestimo": 0
+    },
+    {
+        "username": "Gustavo",
+        "usernumber": "159307",
+        "senha": "2748",
+        "saldo_corrente": 2000,
+        "saldo_poup": 2000,
+        "divida_credito": 0,
+        "divida_emprestimo": 0
+    },
+    {
+        "username": "Arthur",
+        "usernumber": "957223",
+        "senha": "1234",
+        "saldo_corrente": 5020,
+        "saldo_poup": 20,
+        "divida_credito": 0,
+        "divida_emprestimo": 0
+    }
+]

@@ -1,18 +1,22 @@
 <?php
 session_start();
-$erro = false;
+$erro = "";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $valor = $_POST['valor'] ?? '';
-    $valor = floatval(str_replace(',', '.', $valor));
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $valor = intval($_POST["valor"]);
 
-    if ($valor <= 0) {
-        $erro = true;
+    $cedulas_validas = [5, 10, 20, 50, 100];
+
+    // Verifica se o valor é positivo e múltiplo de alguma das cédulas válidas
+    if ($valor <= 0 || $valor > 10000) {
+        $erro = "Valor inválido. Máximo: R$10.000, mínimo: R$5.";
+    } elseif ($valor % 5 !== 0) {
+        $erro = "Não há notas disponíveis para esse valor.";
     } else {
-        $_SESSION['valor'] = $valor;
-        $_SESSION['operacao'] = 'deposito_cc';
-        header('Location: ../../menu/confirmar_operacao.php');
-        exit();
+        $_SESSION["operacao"] = "saque_cc";
+        $_SESSION["valor"] = $valor;
+        header("Location: ../../menu/confirmar_operacao.php");
+        exit;
     }
 }
 ?>
@@ -24,36 +28,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../../menu/menu.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EconomiCred - Página Inicial</title>
+    <title>Saque - Conta Corrente</title>
     <link rel="shortcut icon" href="../../Imagens/iconmaior.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@450&display=swap" rel="stylesheet">
 </head>
-
+<!--Botões da esquerda-->
 <body>
-
-    <audio src="/Sons/beep.mp3" id="som"></audio>
-    <audio src="/Sons/saque_deposito.mp3" id="somdinheiro"></audio>
-
     <div class="tudo">
-        <!-- Botões da esquerda -->
         <div class="botoes">
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="button" class="botao" onclick="tocarComAtraso('deposito.html')">
+            <input type="button" class="botao" onclick="tocarComAtraso('saque.html')">
             <div class="spacerbtn"></div>
         </div>
 
         <div class="border"></div>
 
-        <!-- Tela do caixa -->
         <div class="tela">
-            <!-- Header -->
             <div class="header">
                 <div class="logo_header">
-                    <img src="../../Imagens/Logocomnome.png">
+                    <img src="../../Imagens/LogoComNome.png">
                 </div>
                 <div class="banco24h">
                     <img src="../../Imagens/Banco24h.png">
@@ -62,32 +59,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="space"></div>
 
-            <!-- Conteúdo principal -->
-            <form method="post">
-                <div class="tudo_op">
+            <div class="tudo_op">
+                <form method="POST">
                     <div class="meio_op">
-                        <i class="inserir_valor_texto">Valor a ser depositado na conta corrente:</i>
-                        <input type="number" name="valor" id="valor" autofocus style="caret-color: transparent;"
-                            pattern="\d*" inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')">
+                        <div class="saque_conta_corrente">
+                            <span>Valor a ser sacado da conta corrente:</span>
+                        </div>
+                        <input type="number" name="valor" id="valor" required autofocus
+                            oninput="this.value = this.value.replace(/\D/g, '')" inputmode="numeric" pattern="\d*"
+                            style="caret-color: transparent;">
 
-                        <?php if ($erro): ?>
-                            <p class="mensagem-erro" id="mensagem-erro">Valor inválido. Insira um valor maior que zero.</p>
+                        <?php if (!empty($erro)): ?>
+                            <div class="mensagem-erro"><?= htmlspecialchars($erro) ?></div>
                         <?php endif; ?>
                     </div>
 
                     <div class="footer_op">
-                        <div class="botao_voltar_valor">
-                            <span>Voltar</span>
-                        </div>
-                        <div class="botao_confirmar_valor">
-                            <span>Confirmar</span>
-                        </div>
+                        <button type="button" class="botao_voltar_valor">
+                            Voltar
+                        </button>
+                        <button type="button" class="botao_confirmar_valor">
+                            Confirmar
+                        </button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
 
-        <!-- Botões da direita -->
         <div class="botoes">
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
@@ -99,7 +97,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script>
         const beep = new Audio('../../Sons/beep.mp3');
-
         function tocarComAtraso(url) {
             beep.currentTime = 0;
             beep.play();
@@ -107,7 +104,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 window.location.href = url;
             }, 550);
         }
-
         function enviarFormulario() {
             beep.currentTime = 0;
             beep.play();
@@ -115,18 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 document.querySelector('form').submit();
             }, 550);
         }
-
-        // Esconde mensagem de erro após 3 segundos
-        setTimeout(() => {
-            const msg = document.getElementById('mensagem-erro');
-            if (msg) {
-                msg.style.transition = "opacity 0.5s ease";
-                msg.style.opacity = 0;
-                setTimeout(() => msg.remove(), 500);
-            }
-        }, 2000);
     </script>
-
 </body>
 
 </html>
