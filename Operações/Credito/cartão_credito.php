@@ -1,3 +1,33 @@
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $_SESSION['valor'] = $_POST['valor'] ?? 0;
+    $_SESSION['operacao'] = $_POST['tipo'] ?? '';
+    $_SESSION['origem'] = $_POST['origem'] ?? '';
+
+    header('Location: ../../menu/confirmar_operacao.php');
+    exit();
+}
+
+$usuarios = json_decode(file_get_contents('../../usuarios.json'), true); // caminho ajustado
+$usuario_logado = null;
+
+
+foreach ($usuarios as $u) {
+    if ($u['usernumber'] == $_SESSION['usernumber']) {
+        $usuario_logado = $u;
+        break;
+    }
+}
+
+$saldo = $usuario_logado['saldo_corrente'] ?? 0;
+$divida = $usuario_logado['divida_credito'] ?? 0;
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -53,29 +83,25 @@
 
             <!-- Tela principal -->
 
-            <div class="tudo_op">
-                <div class="meio_op">
-
-                    <span class="inserir_valor_texto">Valor a sacar do cartão de crédito:</span>
-                    <input type="number" name="valor" id="valor" autofocus style="caret-color: transparent;">
-
-                </div>
-
-                <!-- Aqui temos um divisor entre o input e os botões falsos -->
-
-                <div class="footer_op">
-
-                    <div class="botao_voltar_valor">
-                        <span>Voltar</span>
+            <form action="" method="post" id="formValor">
+                <div class="tudo_op">
+                    <div class="meio_op">
+                        <span class="inserir_valor_texto">Valor a sacar do cartão de crédito:</span>
+                        <input type="number" name="valor" id="valor" autofocus style="caret-color: transparent;">
+                        <input type="hidden" name="tipo" value="emprestimo_credito">
+                        <input type="hidden" name="origem" value="cartão_credito.php">
                     </div>
-
-                    <div class="botao_confirmar_valor">
-                        <span>Confirmar</span>
+                    <!-- Aqui temos um divisor entre o input e os botões falsos -->
+                    <div class="footer_op">
+                        <div class="botao_voltar_valor">
+                            <span>Voltar</span>
+                        </div>
+                        <div class="botao_confirmar_valor">
+                            <span>Confirmar</span>
+                        </div>
                     </div>
-
                 </div>
-
-            </div>
+            
 
         </div>
 
@@ -85,9 +111,10 @@
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="submit" class="botao" onclick="audioDinheiro('../../menu/confirmar_operacao.html')" value="">
+            <input type="submit" class="botao" onclick="audioDinheiro('../../menu/confirmar_operacao.php')" value="">
             <div class="spacerbtn"></div>
         </div>
+        </form>
     </div>
 
     <!-- Script responsável pelos sons e encaminhamento de paginas -->

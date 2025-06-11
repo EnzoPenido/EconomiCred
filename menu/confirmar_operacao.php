@@ -48,6 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         switch ($tipo) {
+            case 'emprestimo_credito':
+                $usuarios[$usuario_encontrado]['saldo_corrente'] += $valor; // ou saldo_poup se preferir
+                $usuarios[$usuario_encontrado]['divida_credito'] += $valor;
+                break;
             case 'deposito_cc':
                 $usuarios[$usuario_encontrado]['saldo_corrente'] += $valor;
                 break;
@@ -86,7 +90,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     header('Location: confirmar_operacao.php');
                     exit();
                 }
-                if ($usuarios[$usuario_encontrado]['saldo_corrente'] >= $valor) {
+                $origem = $_SESSION['origem'] ?? 'corrente';
+                $campo_origem = $origem === 'poupanca' ? 'saldo_poup' : 'saldo_corrente';
+
+                if ($usuarios[$usuario_encontrado][$campo_origem] >= $valor) {
                     // Encontrar destinatário
                     $destinatario_key = null;
                     foreach ($usuarios as $key => $u) {
@@ -103,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
 
                     // Executar transferência
-                    $usuarios[$usuario_encontrado]['saldo_corrente'] -= $valor;
+                    $usuarios[$usuario_encontrado][$campo_origem] -= $valor;
                     $usuarios[$destinatario_key]['saldo_corrente'] += $valor;
 
                 } else {
@@ -121,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         unset($_SESSION['valor']);
         unset($_SESSION['operacao']);
         unset($_SESSION['conta_destino']);
-
+        unset($_SESSION['origem']);
         header('Location: operacao_concluida.html');
         exit();
     } else {

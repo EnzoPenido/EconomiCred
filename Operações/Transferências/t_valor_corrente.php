@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="number" step="0.01" name="valor" id="valor" required max="5000" maxlength="6"
                             autofocus inputmode="decimal" />
                         <?php if (isset($erro)): ?>
-                            <div style="color: red; font-weight: bold; text-align: center; margin-bottom: 10px;">
+                            <div class="mensagem-erro">
                                 <?= $erro ?>
                             </div>
                         <?php endif; ?>
@@ -118,9 +118,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         function enviarFormulario() {
-            tocarComAtraso(() => {
+            beep.currentTime = 0;
+            beep.play();
+            setTimeout(() => {
                 document.getElementById('formValor').submit();
-            });
+            }, 550);
         }
     </script>
 </body>

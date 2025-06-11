@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="tudo_op">
                     <div class="meio_op">
                         <?php if (isset($erro)): ?>
-                            <div style="color: red; font-weight: bold; text-align: center; margin-top: 10px;">
+                            <div style="color: red; font-weight: bold; text-align: center; position: relative; top: 90%;">
                                 <?= $erro ?>
                             </div>
                         <?php endif; ?>
@@ -102,21 +102,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
                     </div>
+
+                    <!-- Aqui temos um divisor entre o imput e os botões falsos -->
+
+                    <div class="footer_op">
+
+                        <div class="botao_voltar_valor">
+                            <span>Voltar</span>
+                        </div>
+
+                        <div class="botao_confirmar_valor">
+                            <span>Confirmar</span>
+                        </div>
+
+                    </div>
             </form>
-            <!-- Aqui temos um divisor entre o imput e os botões falsos -->
-
-            <div class="footer_op">
-
-                <div class="botao_voltar_valor">
-                    <span>Voltar</span>
-                </div>
-
-                <div class="botao_confirmar_valor">
-                    <span>Confirmar</span>
-                </div>
-
-            </div>
-
         </div>
 
     </div>
@@ -137,16 +137,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script>
         const beep = new Audio('../../Sons/beep.mp3');
 
-        function tocarComAtraso(callback) {
+        function tocarComAtraso(url) {
             beep.currentTime = 0;
             beep.play();
-            setTimeout(callback, 550);
+            setTimeout(() => {
+                window.location.href = url;
+            }, 550);
         }
 
         function enviarFormulario() {
-            tocarComAtraso(() => {
+            beep.currentTime = 0;
+            beep.play();
+            setTimeout(() => {
                 document.getElementById('formConta').submit();
-            });
+            }, 550);
         }
     </script>
 </body>

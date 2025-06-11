@@ -1,14 +1,33 @@
 <?php
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $conta_destino = isset($_POST['conta_destino']) ? trim($_POST['conta_destino']) : '';
+// Lê o JSON com os dados dos usuários
+$usuarios = json_decode(file_get_contents('../../usuarios.json'), true);
 
-    if (empty($conta_destino)) {
-        $erro = "Digite o número da conta de destino.";
+// Garante que o valor já foi inserido na etapa anterior
+if (!isset($_SESSION['valor_transferencia'])) {
+    header("Location: t_valor_poupanca.php");
+    exit();
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $conta_destino = $_POST['conta_destino'] ?? '';
+
+    $destinatario = null;
+    foreach ($usuarios as $usuario) {
+        if ($usuario['usernumber'] === $conta_destino) {
+            $destinatario = $usuario;
+            break;
+        }
+    }
+
+    if (!$destinatario) {
+        $erro = "Conta de destino não encontrada.";
     } else {
         $_SESSION['conta_destino'] = $conta_destino;
-        header("Location: confirmar_operacao.php");
+        $_SESSION['destinatario_nome'] = $destinatario['username'];
+        $_SESSION['origem'] = 'poupanca';
+        header("Location: ../../menu/confirmar_operacao.php");
         exit();
     }
 }
@@ -65,45 +84,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <!-- Tela principal -->
+            <form method="post" id="formConta">
+                <div class="tudo_op">
+                    <div class="meio_op">
+                        <?php if (isset($erro)): ?>
+                            <div style="color: red; font-weight: bold; text-align: center; position: relative; top: 90%;">
+                                <?= $erro ?>
+                            </div>
+                        <?php endif; ?>
 
-            <div class="tudo_op">
-                <div class="meio_op">
+                        <div class="inserir_valor_texto">
+                            <span>Número da conta do destinatário:</span>
+                        </div>
 
-                    <div class="inserir_valor_texto">
-                        <span>Número da conta do destinatário:</span>
-                    </div>
-                    <input type="text" name="valor" id="valor" maxlength="6" autofocus style="caret-color: transparent;"
-                        inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')">
+                        <input type="text" name="conta_destino" id="conta_destino" maxlength="6" autofocus
+                            style="caret-color: transparent;" inputmode="numeric"
+                            oninput="this.value = this.value.replace(/\D/g, '')">
 
-                </div>
 
-                <!-- Aqui temos um divisor entre o imput e os botões falsos -->
-
-                <div class="footer_op">
-
-                    <div class="botao_voltar_valor">
-                        <span>Voltar</span>
-                    </div>
-
-                    <div class="botao_confirmar_valor">
-                        <span>Confirmar</span>
                     </div>
 
-                </div>
+                    <!-- Aqui temos um divisor entre o imput e os botões falsos -->
 
-            </div>
+                    <div class="footer_op">
 
+                        <div class="botao_voltar_valor">
+                            <span>Voltar</span>
+                        </div>
+
+                        <div class="botao_confirmar_valor">
+                            <span>Confirmar</span>
+                        </div>
+
+                    </div>
+            </form>
         </div>
 
-        <!-- Aqui estão os botões da direita -->
+    </div>
 
-        <div class="botoes">
-            <div class="spacerbtn"></div>
-            <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="submit" class="botao" onclick="tocarComAtraso('../../menu/confirmar_operacao.php')" value="">
-            <div class="spacerbtn"></div>
-        </div>
+    <!-- Aqui estão os botões da direita -->
+
+    <div class="botoes">
+        <div class="spacerbtn"></div>
+        <input type="button" class="botao" onclick="tocarComAtraso('#')">
+        <input type="button" class="botao" onclick="tocarComAtraso('#')">
+        <input type="button" class="botao" onclick="enviarFormulario()" value="">
+        <div class="spacerbtn"></div>
+    </div>
     </div>
 
     <!-- Script responsável pelos sons e encaminhamento de paginas -->
@@ -112,10 +139,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         const beep = new Audio('../../Sons/beep.mp3');
 
         function tocarComAtraso(url) {
-            beep.currentTime = 0; // Reinicia o som se já tiver sido tocado
+            beep.currentTime = 0;
             beep.play();
             setTimeout(() => {
                 window.location.href = url;
+            }, 550);
+        }
+
+        function enviarFormulario() {
+            beep.currentTime = 0;
+            beep.play();
+            setTimeout(() => {
+                document.getElementById('formConta').submit();
             }, 550);
         }
     </script>

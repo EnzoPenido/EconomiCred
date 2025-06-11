@@ -11,8 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $_SESSION['valor_transferencia'] = $valor;
         $_SESSION['valor'] = $valor; // ESSENCIAL para confirmar_operacao.php
-        $_SESSION['operacao'] = 'transferencia_poupanca'; // Podemos diferenciar se quiser
-        header("Location: t_conta_poupanca.php"); // Página seguinte onde digita a conta de destino
+        $_SESSION['operacao'] = 'transferencia'; // ESSENCIAL também
+        $_SESSION['origem'] = 'poupanca'; // ESSENCIAL para saber que é da poupança
+        header("Location: t_conta_poupanca.php"); // Página seguinte
         exit();
     }
 }
@@ -68,7 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <!-- Tela principal -->
-
             <form method="post" id="formValor">
                 <div class="tudo_op">
                     <div class="meio_op">
@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="number" step="0.01" name="valor" id="valor" required max="5000" maxlength="6"
                             autofocus inputmode="decimal" />
                         <?php if (isset($erro)): ?>
-                            <div>
+                            <div class="mensagem-erro">
                                 <?= $erro ?>
                             </div>
                         <?php endif; ?>
@@ -93,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </form>
 
+
         </div>
 
         <!-- Aqui estão os botões da direita -->
@@ -106,7 +107,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
-
     <script>
         const beep = new Audio('../../Sons/beep.mp3');
 
@@ -119,12 +119,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         function enviarFormulario() {
-            tocarComAtraso(() => {
+            beep.currentTime = 0;
+            beep.play();
+            setTimeout(() => {
                 document.getElementById('formValor').submit();
-            });
+            }, 550);
         }
     </script>
-
 </body>
 
 </html>
