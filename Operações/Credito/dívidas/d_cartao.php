@@ -131,7 +131,7 @@ $_SESSION['origem'] = 'd_cartao.php';
 
     <script>
 
-        const beep = new Audio('../Sons/beep.mp3');
+        const beep = new Audio('../../Sons/beep.mp3');
 
         function tocarComAtraso(url) {
             beep.currentTime = 0; // Reinicia o som se já tiver sido tocado

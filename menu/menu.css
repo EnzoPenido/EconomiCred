@@ -66,6 +66,12 @@ body {
     height: 32dvh;
 }
 
+.d_conta_corrente_tudo {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(../Imagens/bg-menu-teste4.jpg);
+}
+
 .meio_op {
     text-align: center;
     height: 53dvh;
