@@ -6,9 +6,9 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Salva o valor enviado no formulário na sessão, ou 0 se não existir
     $_SESSION['valor'] = $_POST['valor'] ?? 0;
-    // Salva o tipo da operação  na sessão
+    // Salva o tipo da operação na sessão
     $_SESSION['operacao'] = $_POST['tipo'] ?? '';
-    // Salva a origem da operação    na sessão
+    // Salva a origem da operação na sessão
     $_SESSION['origem'] = $_POST['origem'] ?? '';
 
     // Redireciona para a página de confirmação da operação
@@ -114,7 +114,7 @@ $divida = $usuario_logado['divida_credito'] ?? 0;
                         </div>
                     </div>
                 </div>
-            
+
 
         </div>
 
@@ -124,7 +124,7 @@ $divida = $usuario_logado['divida_credito'] ?? 0;
             <div class="spacerbtn"></div>
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
-            <input type="submit" class="botao" onclick="audioDinheiro('../../menu/confirmar_operacao.php')" value="">
+            <input type="submit" class="botao" onclick="tocarComAtraso('../../menu/confirmar_operacao.php')" value="">
             <div class="spacerbtn"></div>
         </div>
         </form>
@@ -133,7 +133,7 @@ $divida = $usuario_logado['divida_credito'] ?? 0;
     <!-- Script responsável pelos sons e encaminhamento de paginas -->
 
     <script>
-        const beep = new Audio('../Sons/beep.mp3');
+        const beep = new Audio('../../Sons/beep.mp3');
 
         function tocarComAtraso(url) {
             beep.currentTime = 0; // Reinicia o som se já tiver sido tocado

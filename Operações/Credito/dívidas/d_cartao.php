@@ -83,7 +83,7 @@ $_SESSION['origem'] = 'd_cartao.php';
 
             <div class="header">
                 <div class="logo_header">
-                    <img src="../../../Imagens/LogoComNome.png">
+                    <img src="../../../Imagens/Logocomnome.png">
                 </div>
                 <div class="banco24h">
                     <img src="../../../Imagens/Banco24h.png">
@@ -100,7 +100,7 @@ $_SESSION['origem'] = 'd_cartao.php';
                 <div class="meio_op">
 
                     <span class="inserir_valor_texto">Divida:</span>
-                    <div class="mostrar_valores">R$<?= number_format($divida_credito, 2, ',', '.') ?></div>
+                    <div class="mostrar_valores">R$<?= number_format($divida_credito) ?></div>
 
                 </div>
                 <div class="footer_op">
@@ -114,7 +114,6 @@ $_SESSION['origem'] = 'd_cartao.php';
                     </div>
                 </div>
             </div>
-
         </div>
 
         <!-- Aqui estão os botões da direita -->
@@ -132,19 +131,7 @@ $_SESSION['origem'] = 'd_cartao.php';
 
     <script>
 
-        function segurarSaldo() {
-            const audio = document.getElementById('som');
-            const saldo = document.getElementById('saldo');
-            audio.play();
-            saldo.style.display = 'none';
-        }
-
-        function soltarSaldo() { // Função para quando soltar o botão
-            const saldo = document.getElementById('saldo');
-            saldo.style.display = 'block';
-        }
-
-        const beep = new Audio('../../../Sons/beep.mp3');
+        const beep = new Audio('../Sons/beep.mp3');
 
         function tocarComAtraso(url) {
             beep.currentTime = 0; // Reinicia o som se já tiver sido tocado
