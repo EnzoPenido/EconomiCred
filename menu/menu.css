@@ -52,6 +52,12 @@ body {
     background-size: cover;
 }
 
+.d_conta_corrente_tudo{
+    background-image: url(../../EconomiCred-php/Imagens/bg-menu-teste4.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 /* Layout específico para inserção de valores */
 .tudo_op {
     background-image: url(../Imagens/bg-menu-teste4.jpg);

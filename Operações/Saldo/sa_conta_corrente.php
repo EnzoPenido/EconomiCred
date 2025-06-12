@@ -1,18 +1,26 @@
 <?php
+// Inicia a sessão para acessar variáveis de sessão
 session_start();
 
-$usuarios = json_decode(file_get_contents( '../../usuarios.json'), true); // ajuste o caminho
+// Lê o arquivo JSON com os dados dos usuários e decodifica em array associativo
+$usuarios = json_decode(file_get_contents('../../usuarios.json'), true); // ajuste o caminho
+
+// Inicializa variável para guardar os dados do usuário logado
 $usuario_logado = null;
 
+// Percorre a lista de usuários para encontrar o usuário logado com base no usernumber armazenado na sessão
 foreach ($usuarios as $u) {
     if ($u['usernumber'] == $_SESSION['usernumber']) {
         $usuario_logado = $u;
-        break;
+        break; // para o loop assim que encontrar
     }
 }
 
-$saldo = $usuario_logado['saldo_corrente'] ?? 0; // saldo padrão se não achar
+// Define a variável saldo com o saldo corrente do usuário logado
+// Caso não encontre o usuário ou saldo, define saldo como 0 por padrão
+$saldo = $usuario_logado['saldo_corrente'] ?? 0;
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">

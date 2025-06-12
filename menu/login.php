@@ -1,20 +1,33 @@
 <?php
+// Inicia a sessão para usar variáveis de sessão
 session_start();
+
+// Inicializa variável para controle de erro na autenticação
 $erro = false;
 
+// Verifica se o formulário foi enviado via método POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Recebe o número do usuário digitado no formulário, ou string vazia se não existir
     $usernumber_digitado = $_POST['usernumber'] ?? '';
+    
+    // Lê o conteúdo do arquivo JSON que contém os dados dos usuários
     $dados_json = file_get_contents('../usuarios.json');
+    
+    // Decodifica o JSON em um array associativo PHP
     $usuarios = json_decode($dados_json, true);
 
+    // Percorre o array de usuários para verificar se o número digitado existe
     foreach ($usuarios as $usuario) {
         if ($usuario['usernumber'] === $usernumber_digitado) {
+            // Se encontrar, salva o número do usuário na sessão para uso posterior
             $_SESSION['usernumber'] = $usernumber_digitado;
+            // Redireciona para a página de senha para a próxima etapa de login
             header('Location: senha.php');
             exit();
         }
     }
 
+    // Se não encontrou o usuário, marca erro como true para mostrar mensagem de erro
     $erro = true;
 }
 ?>

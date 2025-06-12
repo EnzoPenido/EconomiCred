@@ -1,25 +1,32 @@
 <?php
-session_start();
-$erro = "";
+session_start(); // Inicia a sessão para usar variáveis de sessão
+$erro = ""; // Inicializa variável para armazenar mensagens de erro
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Recebe o valor enviado pelo formulário e converte para inteiro
     $valor = intval($_POST["valor"]);
 
+    // Define as cédulas válidas para saque
     $cedulas_validas = [5, 10, 20, 50, 100];
 
-    // Verifica se o valor é positivo e múltiplo de alguma das cédulas válidas
+    // Verifica se o valor está dentro do limite permitido e é positivo
     if ($valor <= 0 || $valor > 10000) {
         $erro = "Valor inválido. Máximo: R$10.000, mínimo: R$5.";
-    } elseif ($valor % 5 !== 0) {
+    } 
+    // Verifica se o valor é múltiplo de 5 (menor valor de cédula)
+    elseif ($valor % 5 !== 0) {
         $erro = "Não há notas disponíveis para esse valor.";
     } else {
+        // Se passar nas validações, pega os dados da operação na sessão
         $_SESSION["operacao"] = "saque_cc";
         $_SESSION["valor"] = $valor;
+        // Redireciona para a página de confirmação da operação
         header("Location: ../../menu/confirmar_operacao.php");
         exit;
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">

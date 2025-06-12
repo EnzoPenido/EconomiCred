@@ -1,21 +1,23 @@
 <?php
-session_start();
+session_start(); // Inicia a sessão para usar variáveis de sessão
 
-$erro_senha = false;
+$erro_senha = false; // Variável para controlar erro na senha
 
+// Verifica se o formulário foi enviado via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $senha_digitada = $_POST['senha'] ?? '';
+    $senha_digitada = $_POST['senha'] ?? ''; // Pega a senha digitada, ou string vazia se não existir
 
-    // Carrega os dados do JSON
+    // Carrega os dados dos usuários do arquivo JSON
     $usuarios = json_decode(file_get_contents('../usuarios.json'), true);
-    $usernumber = $_SESSION['usernumber'] ?? null;
+    $usernumber = $_SESSION['usernumber'] ?? null; // Obtém o identificador do usuário na sessão
 
+    // Se não existir usernumber na sessão, redireciona para a página inicial
     if (!$usernumber) {
         header('Location: ../index.html');
         exit();
     }
 
-    // Busca o usuário pelo usernumber
+    // Busca o índice do usuário no array pelo usernumber
     $usuario_encontrado = null;
     foreach ($usuarios as $key => $usuario) {
         if ($usuario['usernumber'] === $usernumber) {
@@ -24,77 +26,91 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    // Se usuário não encontrado, redireciona para página inicial
     if ($usuario_encontrado === null) {
         header('Location: ../index.html');
         exit();
     }
 
-    $usuario = $usuarios[$usuario_encontrado];
+    $usuario = $usuarios[$usuario_encontrado]; // Dados do usuário atual
 
+    // Verifica se a senha digitada é igual à senha cadastrada
     if ($senha_digitada === $usuario['senha']) {
-        $valor = $_SESSION['valor'] ?? 0;
-        $tipo = $_SESSION['operacao'] ?? '';
+        $valor = $_SESSION['valor'] ?? 0; // Valor da operação guardado na sessão
+        $tipo = $_SESSION['operacao'] ?? ''; // Tipo da operação guardado na sessão
 
+        // Validação: valor máximo para depósito é R$ 5.000
         if ($valor > 5000) {
             $_SESSION['erro_operacao'] = 'O valor máximo para depósito é R$ 5.000.';
             header('Location: confirmar_operacao.php');
             exit();
         }
-        // Verifica se os dados da operação estão definidos
+        // Verifica se a operação e valor estão definidos na sessão
         if (!isset($_SESSION['operacao']) || !isset($_SESSION['valor'])) {
             $_SESSION['erro_operacao'] = 'Operação inválida. Tente novamente.';
-            header('Location: menu.php'); // ou qualquer página inicial adequada
+            header('Location: menu.php'); // Redireciona para menu ou página inicial
             exit();
         }
 
+        // Executa a operação dependendo do tipo
         switch ($tipo) {
             case 'emprestimo_credito':
-                $usuarios[$usuario_encontrado]['saldo_corrente'] += $valor; // ou saldo_poup se preferir
+                // Adiciona o valor ao saldo corrente e adiciona dívida de crédito
+                $usuarios[$usuario_encontrado]['saldo_corrente'] += $valor;
                 $usuarios[$usuario_encontrado]['divida_credito'] += $valor;
                 break;
             case 'deposito_cc':
+                // Adiciona valor ao saldo da conta corrente
                 $usuarios[$usuario_encontrado]['saldo_corrente'] += $valor;
                 break;
 
             case 'deposito_poupanca':
+                // Adiciona valor ao saldo da poupança
                 $usuarios[$usuario_encontrado]['saldo_poup'] += $valor;
                 break;
 
             case 'saque_cc':
+                // Verifica se saldo corrente é suficiente para saque
                 if ($usuarios[$usuario_encontrado]['saldo_corrente'] >= $valor) {
                     $usuarios[$usuario_encontrado]['saldo_corrente'] -= $valor;
                 } else {
+                    // Saldo insuficiente para saque
                     $_SESSION['erro_operacao'] = 'Saldo insuficiente.';
                     header('Location: confirmar_operacao.php');
                     exit();
                 }
                 break;
             case 'saque_poup':
+                // Verifica se saldo poupança é suficiente para saque
                 if ($usuarios[$usuario_encontrado]['saldo_poup'] >= $valor) {
                     $usuarios[$usuario_encontrado]['saldo_poup'] -= $valor;
                 } else {
+                    // Saldo insuficiente na poupança
                     $_SESSION['erro_operacao'] = 'Saldo insuficiente na poupança.';
                     header('Location: confirmar_operacao.php');
                     exit();
                 }
                 break;
             case 'transferencia':
+                // Busca conta destino na sessão
                 $conta_destino = $_SESSION['conta_destino'] ?? null;
                 if (!$conta_destino) {
                     $_SESSION['erro_operacao'] = 'Conta de destino não informada.';
                     header('Location: confirmar_operacao.php');
                     exit();
                 }
+                // Não permite transferir para a própria conta
                 if ($conta_destino === $usernumber) {
                     $_SESSION['erro_operacao'] = 'Não é possível transferir para a própria conta.';
                     header('Location: confirmar_operacao.php');
                     exit();
                 }
-                $origem = $_SESSION['origem'] ?? 'corrente';
+                $origem = $_SESSION['origem'] ?? 'corrente'; // Conta de origem da transferência
                 $campo_origem = $origem === 'poupanca' ? 'saldo_poup' : 'saldo_corrente';
 
+                // Verifica se saldo da conta origem é suficiente
                 if ($usuarios[$usuario_encontrado][$campo_origem] >= $valor) {
-                    // Encontrar destinatário
+                    // Busca o destinatário na lista de usuários
                     $destinatario_key = null;
                     foreach ($usuarios as $key => $u) {
                         if ($u['usernumber'] === $conta_destino) {
@@ -109,29 +125,69 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         exit();
                     }
 
-                    // Executar transferência
+                    // Realiza a transferência: debita origem e credita destinatário na conta corrente
                     $usuarios[$usuario_encontrado][$campo_origem] -= $valor;
                     $usuarios[$destinatario_key]['saldo_corrente'] += $valor;
 
                 } else {
+                    // Saldo insuficiente para transferência
                     $_SESSION['erro_operacao'] = 'Saldo insuficiente para transferência.';
+                    header('Location: confirmar_operacao.php');
+                    exit();
+                }
+                break;
+            case 'pagar_divida':
+                $divida = $usuarios[$usuario_encontrado]['divida_credito'];
+
+                // Verifica se o valor é positivo
+                if ($valor <= 0) {
+                    $_SESSION['erro_operacao'] = 'Valor inválido para pagamento.';
+                    header('Location: confirmar_operacao.php');
+                    exit();
+                }
+
+                // Verifica se o usuário tem dívida para pagar
+                if ($divida <= 0) {
+                    $_SESSION['erro_operacao'] = 'Você não possui dívida de crédito para pagar.';
+                    header('Location: confirmar_operacao.php');
+                    exit();
+                }
+
+                // Valor não pode ser maior que a dívida
+                if ($valor > $divida) {
+                    $_SESSION['erro_operacao'] = 'O valor informado é maior que sua dívida.';
+                    header('Location: confirmar_operacao.php');
+                    exit();
+                }
+
+                // Verifica se o saldo corrente é suficiente para pagar dívida
+                if ($usuarios[$usuario_encontrado]['saldo_corrente'] >= $valor) {
+                    // Subtrai valor do saldo e da dívida
+                    $usuarios[$usuario_encontrado]['saldo_corrente'] -= $valor;
+                    $usuarios[$usuario_encontrado]['divida_credito'] -= $valor;
+                } else {
+                    // Saldo insuficiente para pagar dívida
+                    $_SESSION['erro_operacao'] = 'Saldo insuficiente para pagar a dívida.';
                     header('Location: confirmar_operacao.php');
                     exit();
                 }
                 break;
         }
 
-        // Salva os dados atualizados
+        // Salva os dados atualizados no arquivo JSON
         file_put_contents('../usuarios.json', json_encode($usuarios, JSON_PRETTY_PRINT));
 
-        // Limpa sessão da operação
+        // Limpa as variáveis da sessão relacionadas à operação
         unset($_SESSION['valor']);
         unset($_SESSION['operacao']);
         unset($_SESSION['conta_destino']);
         unset($_SESSION['origem']);
+
+        // Redireciona para página de operação concluída
         header('Location: operacao_concluida.html');
         exit();
     } else {
+        // Se a senha estiver incorreta, seta variável para exibir erro
         $erro_senha = true;
     }
 }
@@ -154,6 +210,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="tudo">
         <div class="botoes">
             <div class="spacerbtn"></div>
+            <!-- Botões de navegação que tocam som e redirecionam -->
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('#')">
             <input type="button" class="botao" onclick="tocarComAtraso('menu.php')">
@@ -174,6 +231,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="space"></div>
 
+            <!-- Formulário para confirmar operação digitando a senha -->
             <form method="post">
                 <div class="tudo_op">
                     <div class="meio_op">
@@ -181,11 +239,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="password" name="senha" id="senha" autofocus style="caret-color: transparent;"
                             maxlength="6" pattern="\d*" inputmode="numeric"
                             oninput="this.value = this.value.replace(/\D/g, '')">
+                        
+                        <!-- Exibe mensagem de erro da operação, se houver -->
                         <?php if (isset($_SESSION['erro_operacao'])): ?>
                             <p class="mensagem-erro" id="mensagem-erro"><?= $_SESSION['erro_operacao'] ?></p>
                             <?php unset($_SESSION['erro_operacao']); ?>
                         <?php endif; ?>
 
+                        <!-- Exibe erro se a senha digitada estiver incorreta -->
                         <?php if ($erro_senha): ?>
                             <p class="mensagem-erro" id="mensagem-erro">Senha incorreta. Tente novamente.</p>
                         <?php endif; ?>
@@ -216,6 +277,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         const beep = new Audio('../Sons/beep.mp3');
         const saqueDeposito = new Audio('../Sons/saque_deposito.mp3');
 
+        // Função para tocar som e depois redirecionar
         function tocarComAtraso(url) {
             beep.currentTime = 0;
             beep.play();
@@ -224,6 +286,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }, 550);
         }
 
+        // Função para tocar som e enviar o formulário após delay
         function enviarFormulario() {
             saqueDeposito.currentTime = 0;
             saqueDeposito.play();
@@ -232,6 +295,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }, 1250);
         }
 
+        // Remove a mensagem de erro após 2 segundos com efeito de fade
         setTimeout(() => {
             const msg = document.getElementById('mensagem-erro');
             if (msg) {

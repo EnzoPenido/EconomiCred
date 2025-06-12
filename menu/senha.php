@@ -1,38 +1,48 @@
 <?php
-session_start();
+session_start(); // Inicia a sessão para usar variáveis de sessão
 
-$mensagemErro = '';
+$mensagemErro = ''; // Inicializa variável para mensagem de erro
 
 // Verifica se a sessão com o número da conta está ativa
 if (!isset($_SESSION['usernumber'])) {
+    // Se não estiver, redireciona para a página de login
     header("Location: login.php");
     exit;
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Pega a senha digitada no formulário, ou string vazia se não existir
     $senhaDigitada = $_POST["senha"] ?? '';
 
+    // Carrega o conteúdo do arquivo JSON com dados dos usuários
     $dadosJson = file_get_contents("../usuarios.json");
+    // Decodifica o JSON em array associativo
     $usuarios = json_decode($dadosJson, true);
 
+    // Pega o número da conta da sessão atual
     $conta = $_SESSION['usernumber'];
     $usuario = null;
 
+    // Procura o usuário na lista que tenha o número da conta da sessão
     foreach ($usuarios as $u) {
         if ($u['usernumber'] === $conta) {
             $usuario = $u;
-            break;
+            break; // Sai do loop ao encontrar
         }
     }
 
+    // Verifica se usuário foi encontrado e a senha bate com a digitada
     if ($usuario && $usuario["senha"] === $senhaDigitada) {
+        // Senha correta: redireciona para o menu
         header("Location: menu.php");
         exit;
     } else {
+        // Senha incorreta: define mensagem de erro
         $mensagemErro = "Senha incorreta.";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">

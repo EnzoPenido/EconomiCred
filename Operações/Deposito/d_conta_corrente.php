@@ -1,21 +1,33 @@
 <?php
+// Inicia a sessão para usar variáveis de sessão
 session_start();
+
+// Inicializa a variável de erro como falsa
 $erro = false;
 
+// Verifica se o formulário foi enviado via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Recebe o valor enviado no formulário (string)
     $valor = $_POST['valor'] ?? '';
+    // Converte o valor para float, trocando vírgula por ponto para formato decimal correto
     $valor = floatval(str_replace(',', '.', $valor));
 
+    // Verifica se o valor é menor ou igual a zero
     if ($valor <= 0) {
+        // Marca erro como verdadeiro, indicando valor inválido
         $erro = true;
     } else {
+        // Salva o valor na sessão
         $_SESSION['valor'] = $valor;
+        // Define a operação como depósito em conta corrente
         $_SESSION['operacao'] = 'deposito_cc';
+        // Redireciona para a página de confirmação da operação
         header('Location: ../../menu/confirmar_operacao.php');
         exit();
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
